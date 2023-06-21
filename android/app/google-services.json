@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "228214197243",
+    "project_id": "jellybean-3561c",
+    "storage_bucket": "jellybean-3561c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228214197243:android:61990785a24fe721d0195e",
+        "android_client_info": {
+          "package_name": "com.example.jellybean"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228214197243-ec8bhpu8h5ccoeo2kvamvjj95q0m3via.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ58esSYijPfQTuDzspzyQNqLwDbv1Ux8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228214197243-7b4i7ckq9kshqtf0llhqoom89vc16p17.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "228214197243-f42k5bkd4vtoig9ln9lnb2h615bg1ftc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.jellybean"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228214197243:android:2aac97590eec87b5d0195e",
+        "android_client_info": {
+          "package_name": "com.example.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228214197243-ec8bhpu8h5ccoeo2kvamvjj95q0m3via.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ58esSYijPfQTuDzspzyQNqLwDbv1Ux8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228214197243-7b4i7ckq9kshqtf0llhqoom89vc16p17.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "228214197243-f42k5bkd4vtoig9ln9lnb2h615bg1ftc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.jellybean"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
