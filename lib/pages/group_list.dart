@@ -6,6 +6,9 @@ import 'package:test/pages/profile_page.dart';
 
 import '../components/drawer.dart';
 import 'create_or_search.dart';
+//추가
+import 'notice_page.dart';
+import 'inquiry_page.dart';
 
 class GroupList extends StatefulWidget {
   GroupList({
@@ -53,6 +56,27 @@ class _GroupListState extends State<GroupList> {
       ),
     );
   }
+  
+  // 추가함
+  void goToNoticePage() {
+    //Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const NoticePage(),
+      ),
+    );
+  }
+  // 추가함
+  void goToInquiryPage() {
+    //Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const NoticePage(),
+      ),
+    );
+  }
 
   void hasData() {
     DocumentReference data = userCollection.doc(currentUser.email);
@@ -73,12 +97,14 @@ class _GroupListState extends State<GroupList> {
     return Scaffold(
       appBar: AppBar(
         title: Text("JellyBean"),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color.fromARGB(255,211,195,227), //Colors.grey[900],
       ),
       drawer: MyDrawer(
         onProfileTap: goToProfilePage,
         onSignOut: signUserOut,
         onHomeTap: goToHomePage,
+        onNoticeTap: goToNoticePage,// 여기 수정함
+        onInquiryTap: goToInquiryPage,
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
