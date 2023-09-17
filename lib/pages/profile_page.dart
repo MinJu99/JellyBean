@@ -12,7 +12,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final currentUser = FirebaseAuth.instance.currentUser!;
-  final userCollection = FirebaseFirestore.instance.collection("Users");
+  final userCollection = FirebaseFirestore.instance.collection("users");
 
   Future<void> editField(String field) async {
     String newValue = "";
@@ -57,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
 
     if (newValue.trim().length > 0) {
-      await userCollection.doc(currentUser.email).update({field: newValue});
+      await userCollection.doc(currentUser.uid).update({field: newValue});
     }
   }
 
@@ -70,8 +70,8 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
-            .collection("Users")
-            .doc(currentUser.email)
+            .collection("users")
+            .doc(currentUser.uid)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {

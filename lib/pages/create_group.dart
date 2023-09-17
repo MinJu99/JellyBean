@@ -5,7 +5,9 @@ import 'package:test/components/logo.dart';
 import 'package:test/components/my_list_tile.dart';
 import 'package:test/components/my_textfield.dart';
 import 'package:test/pages/create_or_search.dart';
+import 'package:test/pages/group_list_page.dart';
 import 'package:test/pages/home_page.dart';
+import 'package:test/services/create_group_service.dart';
 
 import 'main_page.dart';
 
@@ -18,33 +20,34 @@ class CreateGroup extends StatefulWidget {
 
 class _CreateGroupState extends State<CreateGroup> {
   final gNameController = TextEditingController();
-  final MemberNumbController = TextEditingController();
+  final memberNumbController = TextEditingController();
   final currentUser = FirebaseAuth.instance.currentUser!;
-  final userCollection = FirebaseFirestore.instance.collection("Users");
-  String docid = '';
+  final String currentUserId = FirebaseAuth.instance.currentUser!.uid;
+  final userCollection = FirebaseFirestore.instance.collection("users");
+  final GroupService _groupService = GroupService();
 
   bool buttonState = false;
 
   // 그룹 생성후 데이터베이스에 입력 함수
+  void createGroupList(String groupId) async {
+    if (gNameController.text.isNotEmpty) {
+      await _groupService.createGroupList(groupId, gNameController.text);
+    }
+  }
+
   void createGroup() {
     if (gNameController.text.isNotEmpty) {
-      FirebaseFirestore.instance.collection("Groups").add({
+      String gName = gNameController.text;
+      final doc = FirebaseFirestore.instance.collection("Groups").doc();
+
+      FirebaseFirestore.instance.collection("Groups").doc(doc.id).set({
         'GroupName': gNameController.text,
-        'UserEmail': currentUser.email,
-        'Member': MemberNumbController.text,
-      }).then(
-        (DocumentReference doc) {
-          docid = doc.id;
-          print("${docid}");
-          userCollection.doc(currentUser.email).update({
-            'group id': FieldValue.arrayUnion([docid]),
-          });
-        },
-      );
-      // 그룹 데이터 베이스 Document uid 유저 데이터베이스 document에 항목 추가
-      userCollection.doc(currentUser.email).update({
-        'group id': docid,
+        'CreatorEmail': currentUser.email,
+        'Member': memberNumbController.text,
       });
+
+      createGroupList(doc.id);
+
       // 생성후 메인페이지로 이동
       goToMainPage();
     } else {
@@ -79,7 +82,7 @@ class _CreateGroupState extends State<CreateGroup> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => MainPage(),
+        builder: (context) => GroupListPage(),
       ),
     );
   }
@@ -157,7 +160,7 @@ class _CreateGroupState extends State<CreateGroup> {
               Container(
                 margin: EdgeInsets.all(8),
                 child: TextField(
-                  controller: MemberNumbController,
+                  controller: memberNumbController,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey.shade400),

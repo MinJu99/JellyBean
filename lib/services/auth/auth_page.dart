@@ -6,7 +6,7 @@ import 'package:test/pages/create_or_search.dart';
 import 'package:test/pages/group_list_page.dart';
 import 'package:test/pages/home_page.dart';
 import 'package:test/pages/main_page.dart';
-import 'login_or_register_page.dart';
+import '../../pages/login_or_register_page.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});

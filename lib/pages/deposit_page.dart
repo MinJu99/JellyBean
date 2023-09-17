@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:test/components/google_sheets_api.dart';
 import 'package:test/components/loading_circle.dart';
 import 'package:test/components/plus_button.dart';
@@ -21,6 +22,8 @@ class _DepositPageState extends State<DepositPage> {
   final _textcontrollerITEM = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _isIncome = false;
+
+  File? image;
 
   //새로운 데이터 입력
   void _enterTransaction() {
@@ -69,19 +72,24 @@ class _DepositPageState extends State<DepositPage> {
                 'Enter',
                 style: TextStyle(color: Colors.white),
               ),
-              onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  _enterTransaction();
-                  Navigator.of(context).pop();
-                }
-                var picker = ImagePicker();
-                var image = await picker.pickImage(source: ImageSource.camera);
-              },
+              onPressed: () => pickImage(ImageSource.gallery),
             )
           ],
         );
       },
     );
+  }
+
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+      setState(() => this.image = imageTemporary);
+    } on PlatformException catch (e) {
+      print('이미지를 불러오는데 실패했습니다. : $e');
+    }
   }
 
   @override

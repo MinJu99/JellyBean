@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:test/components/%08square_tile.dart';
 import 'package:test/components/my_button.dart';
 import 'package:test/components/my_textfield.dart';
 import 'package:test/services/auth_service.dart';
@@ -43,13 +42,12 @@ class _RegisterPageState extends State<RegisterPage> {
       );
 
       FirebaseFirestore.instance
-          .collection("Users")
+          .collection("users")
           .doc(userCredential.user!.email)
           .set({
         'useremail': emailController.text.split('@')[0],
         'username': '',
         'bio': 'Emptybio',
-        'group id': [],
       });
 
       if (context.mounted) Navigator.pop(context);
@@ -175,14 +173,14 @@ class _RegisterPageState extends State<RegisterPage> {
 
               const SizedBox(height: 25),
 
-              Row(
+              /*Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SquareTile(
                       onTap: () => AuthService().signInWithGoogle(),
                       ImagePath: 'lib/images/google.png'),
                 ],
-              ),
+              ),*/
 
               const SizedBox(height: 50),
 

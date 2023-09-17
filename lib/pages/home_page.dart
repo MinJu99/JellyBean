@@ -45,22 +45,6 @@ class _HomePageState extends State<HomePage> {
     FirebaseAuth.instance.signOut();
   }
 
-  void postMessage() {
-    //only post if ther is something in the textfield
-    if (textContoller.text.isNotEmpty) {
-      //store in firebase
-
-      FirebaseFirestore.instance.collection("User Posts").add({
-        'UserEmail': currentUser.email,
-        'Message': textContoller.text,
-        'TimeStamp': Timestamp.now(),
-      });
-    }
-
-    setState(() {
-      textContoller.clear();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

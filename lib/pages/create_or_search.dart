@@ -4,6 +4,8 @@ import 'package:test/pages/home_page.dart';
 import 'package:test/pages/search_group.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'group_list_page.dart';
+
 class CreateOrSearchGroup extends StatefulWidget {
   const CreateOrSearchGroup({super.key});
 
@@ -12,8 +14,15 @@ class CreateOrSearchGroup extends StatefulWidget {
 }
 
 class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
+
+  void goToGroupListPage() {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => GroupListPage(),
+      ),
+    );
   }
 
   @override
@@ -129,7 +138,7 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
               child: IconButton(
                 icon: Icon(Icons.arrow_back_ios),
                 iconSize: 30,
-                onPressed: signUserOut,
+                onPressed: goToGroupListPage,
               ),
             ),
           ],

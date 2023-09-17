@@ -1,17 +1,25 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:test/pages/group_list.dart';
+import 'package:provider/provider.dart';
+import 'package:test/pages/group_list_page.dart';
 import 'package:test/pages/profile_page.dart';
+import 'package:test/services/auth_service.dart';
+import 'package:test/services/group/get_group_name.dart';
 
 import '../components/drawer.dart';
 import 'calender_page.dart';
-import 'chatting_page.dart';
+import 'chat_page.dart';
 import 'deposit_page.dart';
 import 'home_page.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  final String groupId;
+
+  MainPage({
+    super.key,
+    required this.groupId,
+  });
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -26,12 +34,16 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-  final List<Widget> _pages = [
-    HomePage(),
-    ChatPage(),
-    CalendarPage(),
-    DepositPage(),
-  ];
+  List<Widget> _pages = [];
+
+  Future getPages() async {
+    _pages = [
+      HomePage(),
+      Chat(receiverUserID: widget.groupId,),
+      CalendarPage(),
+      DepositPage(),
+    ];
+  }
 
   void goToProfilePage() {
     Navigator.pop(context);
@@ -48,25 +60,31 @@ class _MainPageState extends State<MainPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GroupList(),
+        builder: (context) => GroupListPage(),
       ),
     );
   }
 
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
+  void signOut() {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    authService.signOut();
   }
 
   @override
+  void initState() {
+    getPages();
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("JellyBean"),
+        title: GetGroupName(documentId: widget.groupId),
         backgroundColor: Colors.grey[900],
       ),
       drawer: MyDrawer(
         onProfileTap: goToProfilePage,
-        onSignOut: signUserOut,
+        onSignOut: signOut,
         onHomeTap: goToHomePage,
       ),
       body: _pages[_selectedIndex],

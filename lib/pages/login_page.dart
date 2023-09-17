@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:test/components/%08square_tile.dart';
+import 'package:provider/provider.dart';
 import 'package:test/components/my_button.dart';
 import 'package:test/components/my_textfield.dart';
 import 'package:test/services/auth_service.dart';
@@ -20,25 +20,21 @@ class _LoginPageState extends State<LoginPage> {
 
   //sign user in method
   void signUserIn() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
+    final authService = Provider.of<AuthService>(context, listen: false);
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passedController.text,
+      await authService.signInWithEmailPassword(
+        emailController.text,
+        passedController.text,
       );
-      Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      //show error message
-      showErrorMessage(e.code);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.toString(),
+          ),
+        ),
+      );
     }
   }
 
@@ -156,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 25),
 
-              Row(
+              /* Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SquareTile(
@@ -165,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 50),*/
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
