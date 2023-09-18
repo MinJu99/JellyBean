@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   final currentUser = FirebaseAuth.instance.currentUser!;
 
   final textContoller = TextEditingController();
-  final userCollection = FirebaseFirestore.instance.collection('Users');
+  final userCollection = FirebaseFirestore.instance.collection('users');
 
   //navigate bottom bar
 
