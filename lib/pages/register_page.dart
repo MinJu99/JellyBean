@@ -47,7 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       FirebaseFirestore.instance
           .collection("users")
-          .doc()
+          .doc(FirebaseAuth.instance.currentUser!.uid.toString())
           .set({
         'uid' : FirebaseAuth.instance.currentUser!.uid.toString(),
         'useremail': emailController.text.split('@')[0],

@@ -11,8 +11,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final currentUser = FirebaseAuth.instance.currentUser!;
+  final String currentUserId = FirebaseAuth.instance.currentUser!.uid;
   final userCollection = FirebaseFirestore.instance.collection("users");
+  final currentUser = FirebaseAuth.instance.currentUser!;
 
   Future<void> editField(String field) async {
     String newValue = "";
@@ -57,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
 
     if (newValue.trim().length > 0) {
-      await userCollection.doc(currentUser.email).update({field: newValue});
+      await userCollection.doc(currentUserId).update({field: newValue});
     }
   }
 
@@ -71,11 +72,11 @@ class _ProfilePageState extends State<ProfilePage> {
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
             .collection("users")
-            .doc(currentUser.email)
+            .doc(currentUserId)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            final userData = snapshot.data!.data() as Map<String, dynamic>;
+            var userData = snapshot.data!.data() as Map<String, dynamic>;
 
             return ListView(
               children: [
@@ -86,11 +87,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   Icons.person,
                   size: 60,
                 ),
-                Text(
+                /*Text(
                   currentUser.email!,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.grey[700]),
-                ),
+                ),*/
                 const SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.only(left: 25.0),
