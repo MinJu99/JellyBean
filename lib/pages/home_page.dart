@@ -17,34 +17,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final currentUser = FirebaseAuth.instance.currentUser!;
-
-  final textContoller = TextEditingController();
-  final userCollection = FirebaseFirestore.instance.collection('users');
-
-  //navigate bottom bar
-
-  int _selectedIndex = 0;
-  void navigationBottomBar(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  void goToProfilePage() {
-    Navigator.pop(context);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ProfilePage(),
-      ),
-    );
-  }
-
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
-  }
-
 
   @override
   Widget build(BuildContext context) {

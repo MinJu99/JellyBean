@@ -57,7 +57,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void goToHomePage() {
+  void goToGListPage() {
     Navigator.pop(context);
     Navigator.push(
       context,
@@ -108,7 +108,7 @@ class _MainPageState extends State<MainPage> {
         child: MyDrawer(
           onProfileTap: goToProfilePage,
           onSignOut: signOut,
-          onHomeTap: goToHomePage,
+          onHomeTap: goToGListPage,
           onNoticeTap: goToNoticePage,// 여기 수정함
           onInquiryTap: goToInquiryPage,
         ),
