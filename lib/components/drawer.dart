@@ -6,18 +6,22 @@ class MyDrawer extends StatelessWidget {
   final void Function()? onProfileTap;
   final void Function()? onSignOut;
   final void Function()? onHomeTap;
+  final void Function()? onNoticeTap;  //추가
+  final void Function()? onInquiryTap; //추가
 
   const MyDrawer({
     super.key,
     required this.onProfileTap,
     required this.onSignOut,
     required this.onHomeTap,
+    required this.onNoticeTap,
+    required this.onInquiryTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -26,8 +30,8 @@ class MyDrawer extends StatelessWidget {
               const DrawerHeader(
                 child: Icon(
                   Icons.person,
-                  color: Colors.white,
-                  size: 64,
+                  color: Color.fromARGB(255,211,195,227),
+                  size: 60,
                 ),
               ),
               // 홈 화면으로 이동
@@ -41,6 +45,20 @@ class MyDrawer extends StatelessWidget {
                 icon: Icons.person,
                 text: 'P R O F I L E',
                 onTap: onProfileTap,
+              ),
+              //공지  
+              //관리자가 입력한 공지사항으로 이동
+              MyListTile(
+                icon: Icons.notifications_none,
+                text: 'N O T I C E',
+                onTap: onNoticeTap,
+              ),
+              //문의하기
+              //관리자에게 문의하는 창으로 이동
+              MyListTile(
+                icon: Icons.chat,
+                text: 'I N Q U I R Y',
+                onTap: onInquiryTap,
               ),
             ],
           ),

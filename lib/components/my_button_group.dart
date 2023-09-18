@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 //버튼 위젯
+//수정 필요 현재 my_button.dart 복붙
 
-class MyButton extends StatelessWidget {
+class MyButtonGroup extends StatelessWidget {
   final Function()? onTap;
   final String text;
 
-  const MyButton({super.key, required this.onTap, required this.text});
+  const MyButtonGroup({super.key, required this.onTap, required this.text});
 
   @override
   Widget build(BuildContext context) {

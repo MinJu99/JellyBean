@@ -11,10 +11,10 @@ class PlusButton extends StatelessWidget {
     return GestureDetector(
       onTap: function,
       child: Container(
-        height: 75,
-        width: 75,
+        height: 65,
+        width: 65,
         decoration: BoxDecoration(
-          color: Colors.grey[400],
+          color: Color.fromARGB(255, 214, 201, 227), //Color.fromARGB(255,211,195,227)
           shape: BoxShape.circle,
         ),
         child: Center(

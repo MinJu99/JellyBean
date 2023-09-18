@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 // 정산시 남은 회비 표시하는 카드
 
-class TopNeuCard extends StatelessWidget { 
-  const TopNeuCard({
+class myPointCard extends StatelessWidget {
+  const myPointCard({
     super.key,
     required this.balance,
     required this.expense,
@@ -12,11 +12,11 @@ class TopNeuCard extends StatelessWidget {
   final String balance;
   final String income;
   final String expense;
-
+ 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      //padding: const EdgeInsets.all(20.0), //8.0
+      //padding: const EdgeInsets.all(20.0), //8.0 
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       child: Container(
         //padding: EdgeInsets.all(8),
@@ -27,7 +27,7 @@ class TopNeuCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                'My Point', 
+                '모임 회비', 
                 style: TextStyle(color: Colors.grey[500], fontSize: 12),
               ),
               Text(

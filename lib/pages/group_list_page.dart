@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test/pages/create_or_search.dart';
+import 'package:test/pages/inquiry_page.dart';
 import 'package:test/pages/main_page.dart';
+import 'package:test/pages/notice_page.dart';
 import 'package:test/pages/profile_page.dart';
 import 'package:test/services/auth_service.dart';
 import 'package:test/services/group/get_group_id.dart';
@@ -66,6 +68,26 @@ class _GroupListPageState extends State<GroupListPage> {
     authService.signOut();
   }
 
+  void goToNoticePage() {
+    //Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const NoticePage(),
+      ),
+    );
+  }
+  // 추가함
+  void goToInquiryPage() {
+    //Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const InquiryPage(),
+      ),
+    );
+  }
+
   @override
   void initState() {
     getDocId();
@@ -87,6 +109,8 @@ class _GroupListPageState extends State<GroupListPage> {
         onProfileTap: goToProfilePage,
         onSignOut: signUserOut,
         onHomeTap: goToHomePage,
+        onNoticeTap: goToNoticePage,// 여기 수정함
+        onInquiryTap: goToInquiryPage,
       ),
       body: Center(
         child: Column(

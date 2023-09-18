@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test/components/logo.dart';
+import 'package:test/components/my_button_group.dart';
 import 'package:test/components/my_list_tile.dart';
 import 'package:test/components/my_textfield.dart';
 import 'package:test/pages/create_or_search.dart';
@@ -102,28 +103,30 @@ class _CreateGroupState extends State<CreateGroup> {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const SizedBox(
-            height: 50,
-          ),
+          //const SizedBox(
+          //  height: 50,
+          //),
           logo(),
-          const SizedBox(
-            height: 200,
-          ),
+          
+          
+          Column(
+            children: [
           Row(
             children: [
               const SizedBox(
-                width: 30,
+                width: 30, 
               ),
               Text(
                 '모임명',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 28,
+                  fontSize: 24,
                 ),
               ),
               const SizedBox(
-                width: 55,
+                width: 45,
               ),
               Container(
                 margin: EdgeInsets.all(8),
@@ -138,7 +141,7 @@ class _CreateGroupState extends State<CreateGroup> {
                     ),
                   ),
                 ),
-                width: 200,
+                width: 140,
               ),
             ],
           ),
@@ -151,11 +154,11 @@ class _CreateGroupState extends State<CreateGroup> {
                 '최대인원',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 28,
+                  fontSize: 24,
                 ),
               ),
               const SizedBox(
-                width: 30,
+                width: 20,
               ),
               Container(
                 margin: EdgeInsets.all(8),
@@ -170,10 +173,13 @@ class _CreateGroupState extends State<CreateGroup> {
                     ),
                   ),
                 ),
-                width: 200,
+                width: 140,
               ),
             ],
           ),
+            ]
+          ),
+
           /*Row(
             children: [
               Text(
@@ -196,11 +202,11 @@ class _CreateGroupState extends State<CreateGroup> {
               ),
             ],
           ),*/
-          SizedBox(
-            height: 50,
-          ),
+          //SizedBox(
+          //  height: 50,
+          //),
           Padding(
-            padding: const EdgeInsets.all(25.0),
+            padding: const EdgeInsets.all(15.0),
             child: Row(
               children: [
                 IconButton(
@@ -213,13 +219,13 @@ class _CreateGroupState extends State<CreateGroup> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        TextButton(
-                          onPressed: createGroup,
-                          child: const Text("생성하기"),
-                        )
+                        MyButtonGroup(
+                        text: "  생성하기  ", //버튼 안 글
+                        onTap: createGroup,  //눌렀을 때 함수
+                        ),
                       ],
                     ),
-                    height: 100,
+                    //height: 100,
                   ),
                 )
               ],

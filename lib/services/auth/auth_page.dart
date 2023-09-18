@@ -19,7 +19,7 @@ class AuthPage extends StatelessWidget {
         builder: (context, snapshot) {
           //유저 아이디 생성 후 로그인시
           if (snapshot.hasData) {
-            return GroupListPage();
+            return CreateOrSearchGroup();
           }
 
           //로그인되지 않았을 시, 회원가입페이지

@@ -19,7 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color.fromARGB(255, 211, 195, 227),
         title: Text(
           "Edit $field ",
           style: const TextStyle(
@@ -57,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
 
     if (newValue.trim().length > 0) {
-      await userCollection.doc(currentUser.uid).update({field: newValue});
+      await userCollection.doc(currentUser.email).update({field: newValue});
     }
   }
 
@@ -66,12 +66,12 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile Page"),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color.fromARGB(255, 211, 195, 227),
       ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
-            .collection("users")
-            .doc(currentUser.uid)
+            .collection("Users")
+            .doc(currentUser.email)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -80,18 +80,18 @@ class _ProfilePageState extends State<ProfilePage> {
             return ListView(
               children: [
                 const SizedBox(
-                  height: 50,
+                  height: 40,
                 ),
                 Icon(
                   Icons.person,
-                  size: 72,
+                  size: 60,
                 ),
                 Text(
                   currentUser.email!,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.grey[700]),
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.only(left: 25.0),
                   child: Text(
@@ -109,11 +109,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   sectionName: 'bio',
                   onPressed: () => editField('bio'),
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.only(left: 25.0),
                   child: Text(
-                    'My Posts',
+                    'My Groups',
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                 ),

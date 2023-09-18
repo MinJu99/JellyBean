@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:test/pages/group_list_page.dart';
+import 'package:test/pages/inquiry_page.dart';
+import 'package:test/pages/notice_page.dart';
 import 'package:test/pages/profile_page.dart';
 import 'package:test/services/auth_service.dart';
 import 'package:test/services/group/get_group_name.dart';
@@ -66,8 +68,28 @@ class _MainPageState extends State<MainPage> {
   }
 
   void signOut() {
-    final authService = Provider.of<AuthService>(context, listen: false);
-    authService.signOut();
+    FirebaseAuth.instance.signOut();
+  }
+
+  // 추가함
+  void goToNoticePage() {
+    //Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const NoticePage(),
+      ),
+    );
+  }
+  // 추가함
+  void goToInquiryPage() {
+    //Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const InquiryPage(),
+      ),
+    );
   }
 
   @override
@@ -80,24 +102,28 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         title: GetGroupName(documentId: widget.groupId),
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Color.fromARGB(255,211,195,227),
       ),
-      drawer: MyDrawer(
-        onProfileTap: goToProfilePage,
-        onSignOut: signOut,
-        onHomeTap: goToHomePage,
+      drawer: Container(width: 250,
+        child: MyDrawer(
+          onProfileTap: goToProfilePage,
+          onSignOut: signOut,
+          onHomeTap: goToHomePage,
+          onNoticeTap: goToNoticePage,// 여기 수정함
+          onInquiryTap: goToInquiryPage,
+        ),
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
-        color: Colors.black,
+        color: Color.fromARGB(255,211,195,227), //Colors.black,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7),  //가로 세로
           child: GNav(
-            backgroundColor: Colors.black,
+            backgroundColor: Color.fromARGB(255,211,195,227),
             color: Colors.white,
             activeColor: Colors.white,
-            tabBackgroundColor: Colors.grey.shade800,
-            gap: 8,
+            tabBackgroundColor: Color.fromARGB(255, 184, 138, 230),  //눌렀을 때 색
+            gap: 3,                                      //8->3로 변경 //하단바 눌렀을 때 색 변하는 범위
             onTabChange: _navigateBottomBar,
             padding: EdgeInsets.all(16),
             tabs: [

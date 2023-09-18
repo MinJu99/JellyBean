@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:test/components/logo.dart';
 import 'package:test/components/my_button.dart';
 import 'package:test/components/my_textfield.dart';
 import 'package:test/services/auth_service.dart';
@@ -57,51 +58,40 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 20),
+              logo(),
 
-              //logo
-              Icon(
-                Icons.lock,
-                size: 100,
-              ),
-
-              const SizedBox(height: 50),
-
-              //welcomeback
               Text(
-                'Welcome back you\'ve been missed!',
+                '아이디와 비밀번호를 입력하여 로그인하세요!',
                 style: TextStyle(
-                  color: Colors.grey[700],
-                  fontSize: 16,
+                  color: Colors.grey[600],
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 15),
 
               //username
-
               MyTextField(
                 controller: emailController,
-                hintText: 'Email',
+                hintText: '이메일',
                 obscureText: false,
               ),
 
               const SizedBox(
-                height: 25,
+                height: 20,
               ),
 
               //passwd
-
               MyTextField(
                 controller: passedController,
-                hintText: 'Password',
+                hintText: '비밀번호',
                 obscureText: true,
               ),
 
@@ -121,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                 onTap: signUserIn,
               ),
 
-              const SizedBox(height: 25),
+              const SizedBox(height: 20),
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -150,18 +140,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
+              
               const SizedBox(height: 25),
 
-              /* Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SquareTile(
-                      onTap: () => AuthService().signInWithGoogle(),
-                      ImagePath: 'lib/images/google.png'),
-                ],
-              ),
+              //구글 로그인
 
-              const SizedBox(height: 50),*/
+              const SizedBox(height: 50),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
