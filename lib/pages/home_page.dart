@@ -69,18 +69,18 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           padding: EdgeInsets.all(8),
-          height: 150,
+          height: 100,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
                   '공 지 사 항',
-                  style: TextStyle(color: Colors.grey[500], fontSize: 15),
+                  style: TextStyle(color: Colors.grey[500], fontSize: 13),
                 ),
                 Text(
                   '등록된 공지사항이 없습니다.',
-                  style: TextStyle(color: Colors.grey[800], fontSize: 20),
+                  style: TextStyle(color: Colors.grey[800], fontSize: 15),
                 ),
               ],
             ),

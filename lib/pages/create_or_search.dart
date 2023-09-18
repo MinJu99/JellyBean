@@ -4,12 +4,15 @@ import 'package:test/pages/home_page.dart';
 import 'package:test/pages/search_group.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+
+
 class CreateOrSearchGroup extends StatefulWidget {
   const CreateOrSearchGroup({super.key});
 
   @override
   State<CreateOrSearchGroup> createState() => _CreateOrSearchGroupState();
 }
+
 
 class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
   void signUserOut() {
@@ -21,11 +24,13 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
     return Scaffold(
       body: Center(
         child: Column(
+          //mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 50,
-            ),
+            //const SizedBox(
+            //  height: 50,
+            //),
             Padding(
               padding: const EdgeInsets.all(15),
               child: Text(
@@ -37,9 +42,9 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 200,
-            ),
+            //const SizedBox(
+            //  height: 100,
+            //),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -65,7 +70,7 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
                         child: Icon(
                           Icons.add,
                           size: 80,
-                          color: Color.fromARGB(255, 105, 64, 112),
+                          color: Color.fromARGB(255,211,195,227),
                         ),
                       ),
                     ),
@@ -103,7 +108,7 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
                         child: Icon(
                           Icons.search,
                           size: 80,
-                          color: Color.fromARGB(255, 92, 65, 97),
+                          color: Color.fromARGB(255,211,195,227),
                         ),
                       ),
                     ),
@@ -121,9 +126,9 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 250,
-            ),
+            //const SizedBox(
+            //  height: 100,
+            //),
             Padding(
               padding: const EdgeInsets.all(15),
               child: IconButton(

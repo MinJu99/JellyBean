@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test/components/logo.dart';
+import 'package:test/pages/create_or_search.dart';
 
 class SearchGroup extends StatefulWidget {
   const SearchGroup({super.key});
@@ -10,19 +11,30 @@ class SearchGroup extends StatefulWidget {
 
 class _SearchGroupState extends State<SearchGroup> {
   final GcodeController = TextEditingController();
+
+  void goToChosenPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CreateOrSearchGroup(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const SizedBox(
-            height: 50,
-          ),
+          //const SizedBox(
+          //  height: 50,
+          //),
           logo(),
-          const SizedBox(
-            height: 180,
-          ),
+          //const SizedBox(
+          //  height: 180,
+          //),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -65,6 +77,15 @@ class _SearchGroupState extends State<SearchGroup> {
               ),
             ],
           ),
+
+          Padding(
+              padding: const EdgeInsets.all(15),
+              child: IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                iconSize: 30,
+                onPressed: goToChosenPage,
+              ),
+            ),
         ],
       ),
     );
