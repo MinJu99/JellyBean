@@ -211,14 +211,14 @@ class _CalendarPageState extends State<CalendarPage> {
                 
                 ElevatedButton( 
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 27.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 27.0),
                     backgroundColor: Colors.grey.shade300, //primary: Colors.
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
                     onPressed: () => Navigator.pop(context), 
-                  child: Text('내 일정', 
+                  child: const Text('내 일정', 
                     style: TextStyle(
                       color: Colors.black,
                     ),
@@ -227,14 +227,14 @@ class _CalendarPageState extends State<CalendarPage> {
                 //const SizedBox(width: 25,),
                 ElevatedButton( 
                   style: ElevatedButton.styleFrom( 
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     backgroundColor: Colors.grey.shade300, //primary: Colors.
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
                     onPressed: () => Navigator.pop(context), 
-                  child: Text('모임 일정', 
+                  child: const Text('모임 일정', 
                     style: TextStyle(
                       color: Colors.black,
                     ),
@@ -248,21 +248,22 @@ class _CalendarPageState extends State<CalendarPage> {
             Row(
               children: [
                 const SizedBox(width: 10,),
-                Text('제목',
+                const Text('제목',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
                   ),
                 ),
                 const SizedBox(width: 25,),
-                Container(
+                SizedBox(
+                  //margin: EdgeInsets.all(8),
+                  width: 150,
                   //margin: EdgeInsets.all(8),
                   child: TextField(
                     controller: titleController,
                     textCapitalization: TextCapitalization.words,
                     //decoration: const InputDecoration(labelText: '제목',),
                   ),
-                  width: 150,
                 ),
               ],
             ),
@@ -270,14 +271,16 @@ class _CalendarPageState extends State<CalendarPage> {
             Row(
               children: [
                 const SizedBox(width: 10,),
-                Text('날짜',
+                const Text('날짜',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
                   ),
                 ),
                 const SizedBox(width: 25,),
-                Container(
+                SizedBox(
+                  //margin: EdgeInsets.all(8),
+                  width: 150,
                   //margin: EdgeInsets.all(8),
                   child: TextField(
                     controller: choiceDayController,
@@ -291,7 +294,6 @@ class _CalendarPageState extends State<CalendarPage> {
                     ),
                     */
                   ),
-                  width: 150,
                 ),
               ],
             ),
@@ -299,21 +301,22 @@ class _CalendarPageState extends State<CalendarPage> {
             Row(
               children: [
                 const SizedBox(width: 10,),
-                Text('시간',
+                const Text('시간',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
                   ),
                 ),
                 const SizedBox(width: 25,),
-                Container(
+                SizedBox(
+                  //margin: EdgeInsets.all(8),
+                  width: 150,
                   //margin: EdgeInsets.all(8),
                   child: TextField(
                     controller: timeController,
                     textCapitalization: TextCapitalization.words,
                     //decoration: const InputDecoration(labelText: '시간',),
                   ),
-                  width: 150,
                 ),
               ],
             ),
@@ -321,21 +324,22 @@ class _CalendarPageState extends State<CalendarPage> {
             Row(
               children: [
                 const SizedBox(width: 10,),
-                Text('장소',
+                const Text('장소',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
                   ),
                 ),
                 const SizedBox(width: 25,),
-                Container(
+                SizedBox(
+                  //margin: EdgeInsets.all(8),
+                  width: 150,
                   //margin: EdgeInsets.all(8),
                   child: TextField(
                     controller: placeController,
                     textCapitalization: TextCapitalization.words,
                     //decoration: const InputDecoration(labelText: '장소',),
                   ),
-                  width: 150,
                 ),
               ],
             ),
@@ -361,12 +365,12 @@ class _CalendarPageState extends State<CalendarPage> {
             lastDay: DateTime.utc(2999, 12, 31), //DateTime(2023),
             focusedDay: DateTime.now(),
             
-            calendarStyle: CalendarStyle(
+            calendarStyle: const CalendarStyle(
               canMarkersOverflow: true, //마커 영역 밖으로 안나감 : t
               markerSize: 8.0,
               markersMaxCount: 3,
               markersAlignment: Alignment.bottomCenter,
-              markerDecoration: const BoxDecoration(
+              markerDecoration: BoxDecoration(
                 color: Color.fromARGB(255, 184, 138, 230),
                 shape: BoxShape.circle,
               ),
@@ -377,22 +381,23 @@ class _CalendarPageState extends State<CalendarPage> {
             calendarBuilders: CalendarBuilders(dowBuilder: (Context, day) {
               switch (day.weekday) {
                 case 1:
-                  return Center(child: Text('월'),);
+                  return const Center(child: Text('월'),);
                 case 2:
-                  return Center(child: Text('화'),);
+                  return const Center(child: Text('화'),);
                 case 3:
-                  return Center(child: Text('수'),);
+                  return const Center(child: Text('수'),);
                 case 4:
-                  return Center(child: Text('목'),);
+                  return const Center(child: Text('목'),);
                 case 5:
-                  return Center(child: Text('금'),);
+                  return const Center(child: Text('금'),);
                 case 6:
-                  return Center(child: Text('토',
+                  return const Center(child: Text('토',
                       style: TextStyle(color: Colors.blue),),);
                 case 7:
-                  return Center(child: Text('일',
+                  return const Center(child: Text('일',
                       style: TextStyle(color: Colors.red),),);
               }
+              return null;
             }),
             onDaySelected: (selectedDay, focusedDay) {
               if (!isSameDay(_selectedDate, selectedDay)) {
@@ -439,8 +444,8 @@ class _CalendarPageState extends State<CalendarPage> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showAddEventDialog(),
         label: const Text('추가'),
-        icon: Icon(Icons.add,),
-        backgroundColor: Color.fromARGB(255, 214, 201, 227),
+        icon: const Icon(Icons.add,),
+        backgroundColor: const Color.fromARGB(255, 214, 201, 227),
         //splashColor: Color.fromARGB(255, 184, 138, 230),
       ),
     );

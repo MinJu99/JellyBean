@@ -22,6 +22,17 @@ class TopNeuCard extends StatelessWidget {
         //padding: EdgeInsets.all(8),
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
         height: 150,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.white,  //grey[300],
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.shade400,
+                  offset: const Offset(4.0, 4.0),
+                  blurRadius: 10.0,
+                  spreadRadius: 1.0),
+              
+            ]),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -39,10 +50,10 @@ class TopNeuCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.arrow_upward),
+                      const Icon(Icons.arrow_upward),
                       Column(
                         children: [
-                          Text('입금액'),
+                          const Text('입금액'),
                           Text(income),
                         ],
                       ),
@@ -50,10 +61,10 @@ class TopNeuCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(Icons.arrow_downward),
+                      const Icon(Icons.arrow_downward),
                       Column(
                         children: [
-                          Text('지출액'),
+                          const Text('지출액'),
                           Text(expense),
                         ],
                       ),
@@ -64,17 +75,6 @@ class TopNeuCard extends StatelessWidget {
             ],
           ),
         ),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.white,  //grey[300],
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.shade400,
-                  offset: Offset(4.0, 4.0),
-                  blurRadius: 10.0,
-                  spreadRadius: 1.0),
-              
-            ]),
       ),
     );
   }

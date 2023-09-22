@@ -18,7 +18,7 @@ class GoogleSheetsApi {
 ''';
 
   //스프래드 시트 연동
-  static final _spreadsheetId = '11pd8cevfZlw3cZPHyYq_QWWYZhMGE5Lf2_UhuzvaxQs';
+  static const _spreadsheetId = '11pd8cevfZlw3cZPHyYq_QWWYZhMGE5Lf2_UhuzvaxQs';
   static final _gsheets = GSheets(_credentials);
   static Worksheet? _worksheet;
 
@@ -68,18 +68,18 @@ class GoogleSheetsApi {
   }
 
   //새로운 내역 입력 함수
-  static Future insert(String name, String amount, bool _isIncome) async {
+  static Future insert(String name, String amount, bool isIncome) async {
     if (_worksheet == null) return;
     numberOffTransactions++;
     currentTransactions.add([
       name,
       amount,
-      _isIncome == true ? 'income' : 'expense',
+      isIncome == true ? 'income' : 'expense',
     ]);
     await _worksheet!.values.appendRow([
       name,
       amount,
-      _isIncome == true ? 'income' : 'expense',
+      isIncome == true ? 'income' : 'expense',
     ]);
   }
 }

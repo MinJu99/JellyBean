@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test/components/logo.dart';
 import 'package:test/pages/create_group.dart';
-import 'package:test/pages/home_page.dart';
 import 'package:test/pages/search_group.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import 'group_list_page.dart';
 
@@ -20,7 +19,7 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GroupListPage(),
+        builder: (context) => const GroupListPage(),
       ),
     );
   }
@@ -34,20 +33,7 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //const SizedBox(
-            //  height: 50,
-            //),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Text(
-                'JellyBean',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            const logo(),  //logo.dart 수정함
             //const SizedBox(
             //  height: 100,
             //),
@@ -61,7 +47,7 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CreateGroup(),
+                              builder: (context) => const CreateGroup(),
                             ));
                       },
                       child: Container(
@@ -73,21 +59,19 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
                             color: Colors.grey,
                           ),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.add,
                           size: 80,
-                          color: Color.fromARGB(255,211,195,227),
+                          color: Color.fromARGB(255, 186, 158, 215),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 25,
-                    ),
+                    const SizedBox(height: 20,),
                     Text(
                       '생성하기',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: 15,
+                        fontSize: 19,
                       ),
                     )
                   ],
@@ -99,7 +83,7 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SearchGroup(),
+                              builder: (context) => const SearchGroup(),
                             ));
                       },
                       child: Container(
@@ -111,21 +95,19 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
                             color: Colors.grey,
                           ),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.search,
                           size: 80,
-                          color: Color.fromARGB(255,211,195,227),
+                          color: Color.fromARGB(255, 186, 158, 215),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 25,
-                    ),
+                    const SizedBox(height: 20,),
                     Text(
                       '모임 찾기',
                       style: TextStyle(
                         color: Colors.grey[700],
-                        fontSize: 15,
+                        fontSize: 19,
                       ),
                     )
                   ],
@@ -138,7 +120,7 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
             Padding(
               padding: const EdgeInsets.all(15),
               child: IconButton(
-                icon: Icon(Icons.arrow_back_ios),
+                icon: const Icon(Icons.arrow_back_ios),
                 iconSize: 30,
                 onPressed: goToGroupListPage,
               ),
