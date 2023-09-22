@@ -157,8 +157,8 @@ class _CalendarPageState extends State<CalendarPage> {
                   ),
                 ),
               ),
-              /*
-                ElevatedButton.icon( 
+              
+                /*ElevatedButton.icon( 
                   style: ElevatedButton.styleFrom( 
                     backgroundColor: Colors.white,
                     ),
@@ -167,8 +167,8 @@ class _CalendarPageState extends State<CalendarPage> {
                   label: Text("추가", style: TextStyle(
                     color: Color.fromARGB(255, 184, 138, 230),),
                   ), 
-                ),
-                */
+                ),*/
+                
             ]),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly, //사이 공간 동일
