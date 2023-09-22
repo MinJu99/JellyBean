@@ -1,12 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:provider/provider.dart';
 import 'package:test/pages/group_list_page.dart';
 import 'package:test/pages/inquiry_page.dart';
 import 'package:test/pages/notice_page.dart';
 import 'package:test/pages/profile_page.dart';
-import 'package:test/services/auth_service.dart';
 import 'package:test/services/group/get_group_name.dart';
 
 import '../components/drawer.dart';
@@ -18,7 +16,7 @@ import 'home_page.dart';
 class MainPage extends StatefulWidget {
   final String groupId;
 
-  MainPage({
+  const MainPage({
     super.key,
     required this.groupId,
   });
@@ -40,10 +38,10 @@ class _MainPageState extends State<MainPage> {
 
   Future getPages() async {
     _pages = [
-      HomePage(),
+      const HomePage(),
       Chat(receiverUserID: widget.groupId,),
-      CalendarPage(),
-      DepositPage(),
+      const CalendarPage(),
+      const DepositPage(),
     ];
   }
 
@@ -62,7 +60,7 @@ class _MainPageState extends State<MainPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GroupListPage(),
+        builder: (context) => const GroupListPage(),
       ),
     );
   }
@@ -98,13 +96,14 @@ class _MainPageState extends State<MainPage> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: GetGroupName(documentId: widget.groupId),
-        backgroundColor: Color.fromARGB(255,211,195,227),
+        backgroundColor: const Color.fromARGB(255,211,195,227),
       ),
-      drawer: Container(width: 250,
+      drawer: SizedBox(width: 250,
         child: MyDrawer(
           onProfileTap: goToProfilePage,
           onSignOut: signOut,
@@ -115,18 +114,18 @@ class _MainPageState extends State<MainPage> {
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
-        color: Color.fromARGB(255,211,195,227), //Colors.black,
+        color: const Color.fromARGB(255,211,195,227), //Colors.black,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7),  //가로 세로
           child: GNav(
-            backgroundColor: Color.fromARGB(255,211,195,227),
+            backgroundColor: const Color.fromARGB(255,211,195,227),
             color: Colors.white,
             activeColor: Colors.white,
-            tabBackgroundColor: Color.fromARGB(255, 184, 138, 230),  //눌렀을 때 색
+            tabBackgroundColor: const Color.fromARGB(255, 184, 138, 230),  //눌렀을 때 색
             gap: 3,                                      //8->3로 변경 //하단바 눌렀을 때 색 변하는 범위
             onTabChange: _navigateBottomBar,
-            padding: EdgeInsets.all(16),
-            tabs: [
+            padding: const EdgeInsets.all(16),
+            tabs: const [
               GButton(
                 icon: Icons.home,
                 text: '홈',

@@ -14,8 +14,8 @@ class _NoticePageState extends State<NoticePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("JellyBean"),
-        backgroundColor: Color.fromARGB(255,211,195,227),
+        title: const Text("JellyBean"),
+        backgroundColor: const Color.fromARGB(255,211,195,227),
       ),
     );
   }

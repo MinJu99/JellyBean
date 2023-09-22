@@ -18,7 +18,7 @@ class MyTransaction extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         color: Colors.white,  //grey[200],
         height: 50,
         child: Center(
@@ -27,7 +27,7 @@ class MyTransaction extends StatelessWidget {
             children: [
               Text(transactionName),
               Text(
-                (expenseOrIncome == 'expense' ? '-' : '+') + ' \$ ' + money,
+                '${expenseOrIncome == 'expense' ? '-' : '+'} \$ $money',
                 style: TextStyle(
                     color: (expenseOrIncome == 'expense'
                         ? Colors.red

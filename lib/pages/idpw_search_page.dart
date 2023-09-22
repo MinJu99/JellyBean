@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test/components/logo.dart';
 import 'package:test/components/my_button.dart';
+import 'package:test/components/my_textfield.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -104,182 +105,48 @@ class _RegisterPageState extends State<RegisterPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 15),
 
-/*
               MyTextField(
                 controller: emailController,
                 hintText: 'ID(e-mail)',
                 obscureText: false,
               ),
-*/
-
-              //id
-/*
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox(width: 20,),
-                  Text('ID',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 17,
-                    ),
-                  ),
-                  //const SizedBox(width: 10,),
-                  Container(
-                    child: MyTextField(
-                      controller: emailController,
-                      hintText: 'ID(e-mail)',
-                      obscureText: false,
-                    ),
-                    width: 200,
-                  ),
-                  const SizedBox(width: 20,),
-                ],
-              ),
-*/
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox(width: 20,),
-                  const Text('ID                  ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
-                  ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                       // fillColor: Colors.white,
-                        //filled: true,
-                        hintText: 'email',
-                        hintStyle: TextStyle(color: Colors.grey[500]),
-                      ),
-                      obscureText: false,
-                    ),
-                  ),
-                  const SizedBox(width: 20,),
-                ],
-              ),
 
               //passwd
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox(width: 20,),
-                  const Text('비밀번호        ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
-                  ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: passedController,
-                      obscureText: true,
-                    ),
-                  ),
-                  const SizedBox(width: 20,),
-                ],
+
+              MyTextField(
+                controller: passedController,
+                hintText: '비밀번호',
+                obscureText: true,
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox(width: 20,),
-                  const Text('비밀번호 확인',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
-                  ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: confimPasswordController,
-                      obscureText: true,
-                    ),
-                  ),
-                  const SizedBox(width: 20,),
-                ],
+              MyTextField(
+                controller: confimPasswordController,
+                hintText: '비밀번호 확인',
+                obscureText: true,
               ),
 
               const SizedBox(height: 20),
 
               // 회원 정보
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox(width: 20,),
-                  const Text('이름                ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
-                  ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: nameController,
-                      obscureText: false,
-                    ),
-                  ),
-                  const SizedBox(width: 20,),
-                ],
+
+              MyTextField(
+                controller: nameController,
+                hintText: '이름',
+                obscureText: false,
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox(width: 20,),
-                  const Text('생년월일        ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
-                  ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: birthController,
-                      obscureText: false,
-                    ),
-                  ),
-                  const SizedBox(width: 20,),
-                ],
+              MyTextField(
+                controller: birthController,
+                hintText: '생년월일',
+                obscureText: false,
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox(width: 20,),
-                  const Text('전화번호        ',  //옆에 인증 버튼 만들기
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
-                  ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: phoneNumberController,
-                      obscureText: false,
-                    ),
-                  ),
-                  const SizedBox(width: 20,),
-                ],
+              MyTextField(
+                controller: phoneNumberController,
+                hintText: '전화번호', //옆에 인증 버튼 만들기
+                obscureText: false,
               ),
 
               const SizedBox(height: 25),

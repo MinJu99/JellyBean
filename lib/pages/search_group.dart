@@ -28,13 +28,7 @@ class _SearchGroupState extends State<SearchGroup> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          //const SizedBox(
-          //  height: 50,
-          //),
-          logo(),
-          //const SizedBox(
-          //  height: 180,
-          //),
+          const logo(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -47,17 +41,18 @@ class _SearchGroupState extends State<SearchGroup> {
                     color: Colors.grey.shade400,
                   ),
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.search,
-                  size: 30,
-                  color: Colors.deepPurple,
+                  size: 40,  //아이콘 사이즈 수정함
+                  color: Color.fromARGB(255, 186, 158, 215),  //색 수정함
                 ),
               ),
               const SizedBox(
                 width: 10,
               ),
               Container(
-                margin: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(8),
+                width: 200,
                 child: TextField(
                   controller: GcodeController,
                   decoration: InputDecoration(
@@ -73,7 +68,6 @@ class _SearchGroupState extends State<SearchGroup> {
                         fontSize: 20,
                       )),
                 ),
-                width: 200,
               ),
             ],
           ),
@@ -81,7 +75,7 @@ class _SearchGroupState extends State<SearchGroup> {
           Padding(
               padding: const EdgeInsets.all(15),
               child: IconButton(
-                icon: Icon(Icons.arrow_back_ios),
+                icon: const Icon(Icons.arrow_back_ios),
                 iconSize: 30,
                 onPressed: goToChosenPage,
               ),

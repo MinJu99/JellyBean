@@ -1,15 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test/components/drawer.dart';
 import 'package:test/components/my_textfield.dart';
 import 'package:test/pages/profile_page.dart';
 import 'package:test/pages/setting_page.dart';
 
-import '../const.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -23,8 +20,24 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           height: 100,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.grey[300],
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.shade500,
+                    offset: const Offset(4.0, 4.0),
+                    blurRadius: 15.0,
+                    spreadRadius: 1.0),
+                const BoxShadow(
+                    color: Colors.white,
+                    offset: Offset(-4.0, -4.0),
+                    blurRadius: 15.0,
+                    spreadRadius: 1.0),
+              ]
+            ),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -40,22 +53,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Colors.grey[300],
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey.shade500,
-                    offset: Offset(4.0, 4.0),
-                    blurRadius: 15.0,
-                    spreadRadius: 1.0),
-                BoxShadow(
-                    color: Colors.white,
-                    offset: Offset(-4.0, -4.0),
-                    blurRadius: 15.0,
-                    spreadRadius: 1.0),
-              ]
-            ),
         ),
       ),
     );

@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +105,7 @@ class _ChatState extends State<Chat> {
           ),
           IconButton(
               onPressed: sendMessage,
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_upward,
                 size: 40,
               ))

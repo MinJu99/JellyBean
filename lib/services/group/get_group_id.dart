@@ -29,7 +29,7 @@ class GetGroupID extends StatelessWidget {
               snapshot.data!.data() as Map<String, dynamic>;
           return Text('${data['groupId']}');
         }
-        return Text('loading...');
+        return const Text('loading...');
       }),
     );
   }

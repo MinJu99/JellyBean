@@ -265,7 +265,6 @@ class _CalendarPageState extends State<CalendarPage> {
                     textCapitalization: TextCapitalization.words,
                     //decoration: const InputDecoration(labelText: '제목',),
                   ),
-                  width: 150,
                 ),
               ],
             ),
@@ -322,7 +321,6 @@ class _CalendarPageState extends State<CalendarPage> {
                     textCapitalization: TextCapitalization.words,
                     //decoration: const InputDecoration(labelText: '시간',),
                   ),
-                  width: 150,
                 ),
               ],
             ),
@@ -348,7 +346,6 @@ class _CalendarPageState extends State<CalendarPage> {
                     textCapitalization: TextCapitalization.words,
                     //decoration: const InputDecoration(labelText: '장소',),
                   ),
-                  width: 150,
                 ),
               ],
             ),
@@ -377,7 +374,7 @@ class _CalendarPageState extends State<CalendarPage> {
               markerSize: 8.0,
               markersMaxCount: 3,
               markersAlignment: Alignment.bottomCenter,
-              markerDecoration: const BoxDecoration(
+              markerDecoration: BoxDecoration(
                 color: Color.fromARGB(255, 184, 138, 230),
                 shape: BoxShape.circle,
               ),
@@ -430,6 +427,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     ),
                   );
               }
+              return null;
             }),
             onDaySelected: (selectedDay, focusedDay) {
               if (!isSameDay(_selectedDate, selectedDay)) {

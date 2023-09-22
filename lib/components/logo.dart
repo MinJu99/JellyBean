@@ -6,8 +6,8 @@ class logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15),
+    return const Padding(
+      padding: EdgeInsets.fromLTRB(20,30,20,10),//좌,상,우,하  //여기 수정
       child: Text(
         'JellyBean',
         style: TextStyle(

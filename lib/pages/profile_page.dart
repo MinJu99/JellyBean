@@ -20,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: Color.fromARGB(255, 211, 195, 227),
+        backgroundColor: const Color.fromARGB(255, 211, 195, 227),
         title: Text(
           "Edit $field ",
           style: const TextStyle(
@@ -29,10 +29,10 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         content: TextField(
           autofocus: true,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
             hintText: "Enter new $field",
-            hintStyle: TextStyle(color: Colors.grey),
+            hintStyle: const TextStyle(color: Colors.grey),
           ),
           onChanged: (value) {
             newValue = value;
@@ -40,14 +40,14 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         actions: [
           TextButton(
-            child: Text(
+            child: const Text(
               'Cancel',
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () => Navigator.pop(context),
           ),
           TextButton(
-            child: Text(
+            child: const Text(
               'Save',
               style: TextStyle(color: Colors.white),
             ),
@@ -57,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
 
-    if (newValue.trim().length > 0) {
+    if (newValue.trim().isNotEmpty) {
       await userCollection.doc(currentUserId).update({field: newValue});
     }
   }
@@ -66,8 +66,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile Page"),
-        backgroundColor: Color.fromARGB(255, 211, 195, 227),
+        title: const Text("Profile Page"),
+        backgroundColor: const Color.fromARGB(255, 211, 195, 227),
       ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
@@ -83,7 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(
                   height: 40,
                 ),
-                Icon(
+                const Icon(
                   Icons.person,
                   size: 60,
                 ),

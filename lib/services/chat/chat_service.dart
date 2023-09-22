@@ -13,7 +13,7 @@ class ChatService extends ChangeNotifier {
     final String currentUserId = _firebaseAuth.currentUser!.uid;
     final String currenUserEmail = _firebaseAuth.currentUser!.email.toString();
     final Timestamp timestamp = Timestamp.now();
-    Map<String, dynamic> currentUserInfo = Map<String, dynamic>();
+    Map<String, dynamic> currentUserInfo = <String, dynamic>{};
     await _firestore.collection('users').doc(currentUserId).get().then((value) {
       currentUserInfo = value.data()!;
     });

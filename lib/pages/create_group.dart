@@ -3,14 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test/components/logo.dart';
 import 'package:test/components/my_button_group.dart';
-import 'package:test/components/my_list_tile.dart';
-import 'package:test/components/my_textfield.dart';
 import 'package:test/pages/create_or_search.dart';
 import 'package:test/pages/group_list_page.dart';
-import 'package:test/pages/home_page.dart';
 import 'package:test/services/create_group_service.dart';
 
-import 'main_page.dart';
 
 class CreateGroup extends StatefulWidget {
   const CreateGroup({super.key});
@@ -83,7 +79,7 @@ class _CreateGroupState extends State<CreateGroup> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GroupListPage(),
+        builder: (context) => const GroupListPage(),
       ),
     );
   }
@@ -108,7 +104,7 @@ class _CreateGroupState extends State<CreateGroup> {
           //const SizedBox(
           //  height: 50,
           //),
-          logo(),
+          const logo(),
           
           
           Column(
@@ -118,18 +114,17 @@ class _CreateGroupState extends State<CreateGroup> {
               const SizedBox(
                 width: 30, 
               ),
-              Text(
+              const Text(
                 '모임명',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 24,
                 ),
               ),
-              const SizedBox(
-                width: 45,
-              ),
+              const SizedBox(width: 45,),
               Container(
-                margin: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(8),
+                width: 180, //여기 수정
                 child: TextField(
                   controller: gNameController,
                   decoration: InputDecoration(
@@ -141,7 +136,6 @@ class _CreateGroupState extends State<CreateGroup> {
                     ),
                   ),
                 ),
-                width: 140,
               ),
             ],
           ),
@@ -150,18 +144,17 @@ class _CreateGroupState extends State<CreateGroup> {
               const SizedBox(
                 width: 30,
               ),
-              Text(
+              const Text(
                 '최대인원',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 24,
                 ),
               ),
-              const SizedBox(
-                width: 20,
-              ),
+              const SizedBox(width: 24,), //여기 수정
               Container(
-                margin: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(8),
+                width: 180,  //여기 수정
                 child: TextField(
                   controller: memberNumbController,
                   decoration: InputDecoration(
@@ -173,7 +166,6 @@ class _CreateGroupState extends State<CreateGroup> {
                     ),
                   ),
                 ),
-                width: 140,
               ),
             ],
           ),
@@ -210,7 +202,7 @@ class _CreateGroupState extends State<CreateGroup> {
             child: Row(
               children: [
                 IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
+                  icon: const Icon(Icons.arrow_back_ios),
                   iconSize: 30,
                   onPressed: goToChosenPage,
                 ),
@@ -220,8 +212,9 @@ class _CreateGroupState extends State<CreateGroup> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         MyButtonGroup(
-                        text: "  생성하기  ", //버튼 안 글
-                        onTap: createGroup,  //눌렀을 때 함수
+                          text: "        생성하기        ", //버튼 안 글 수정(야매 죄송염) --> 변경필요
+                          onTap: createGroup,  //눌렀을 때 함수
+                          
                         ),
                       ],
                     ),
