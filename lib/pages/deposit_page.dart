@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:test/components/google_sheets_api.dart';
 import 'package:test/components/loading_circle.dart';
 import 'package:test/components/plus_button.dart';
 import 'package:test/components/top_card.dart';
@@ -30,26 +29,9 @@ class _DepositPageState extends State<DepositPage> {
   final breakdownController = TextEditingController(); //내역
 
   //새로운 데이터 입력
-  void _enterTransaction() {
-    GoogleSheetsApi.insert(
-      _textcontrollerITEM.text,
-      _textcontrollerAMOUNT.text,
-      _isIncome,
-    );
-  }
-
   // 데이터 로딩까지 기다리기
   bool timerHasStarted = false;
 
-  void startLoading() {
-    timerHasStarted = true;
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (GoogleSheetsApi.loading == false) {
-        setState(() {});
-        timer.cancel();
-      }
-    });
-  }
 
   // 새로운 입출금 내역
   void _newTransaction() {
@@ -150,10 +132,6 @@ class _DepositPageState extends State<DepositPage> {
                     style: TextStyle(color: Colors.black),
                   ),
                   onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      _enterTransaction();
-                      Navigator.of(context).pop();
-                    }
                     var picker = ImagePicker();
                     var image = await picker.pickImage(source: ImageSource.camera);
                   },
@@ -171,10 +149,6 @@ class _DepositPageState extends State<DepositPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (GoogleSheetsApi.loading == true && timerHasStarted == false) {
-      startLoading();
-    }
-
     return Scaffold(
       backgroundColor: Colors.white, //grey[300],
       body: Padding(
@@ -221,24 +195,7 @@ class _DepositPageState extends State<DepositPage> {
                       const SizedBox(
                         height: 20,
                       ),
-                      const MyTransaction(expenseOrIncome: 'income', transactionName: 'Teaching', money: '300'),
-                      Expanded(
-                        child: GoogleSheetsApi.loading == true
-                            ? const LoadingCircle()
-                            : ListView.builder(
-                                itemCount:
-                                    GoogleSheetsApi.currentTransactions.length,
-                                itemBuilder: (context, index) {
-                                  return MyTransaction(
-                                      expenseOrIncome: GoogleSheetsApi
-                                          .currentTransactions[index][2],
-                                      transactionName: GoogleSheetsApi
-                                          .currentTransactions[index][0],
-                                      money: GoogleSheetsApi
-                                          .currentTransactions[index][1]);
-                                },
-                              ),
-                      )
+                      MyTransaction(expenseOrIncome: 'income', transactionName: 'Teaching', money: '300'),
                     ],
                   ),
                 ),

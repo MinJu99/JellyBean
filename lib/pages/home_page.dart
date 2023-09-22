@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test/components/drawer.dart';
+import 'package:test/components/my_textfield.dart';
+import 'package:test/pages/profile_page.dart';
+import 'package:test/pages/setting_page.dart';
 
 
 class HomePage extends StatefulWidget {
