@@ -121,7 +121,7 @@ class _GroupListPageState extends State<GroupListPage> {
                 future: getDocId(),
                 builder: (context, snapshot) {
                   return ListView.builder(
-                    itemCount: docIDs.length,
+                    itemCount: (docIDs.length - 1),
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),

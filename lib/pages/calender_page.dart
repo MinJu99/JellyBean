@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
@@ -26,7 +27,7 @@ class _CalendarPageState extends State<CalendarPage> {
   final timeController = TextEditingController(); //시간
   final placeController = TextEditingController(); //장소
 
-  final isSelected = <bool>[false, false, false]; 
+  final isSelected = <bool>[false, false, false];
 
   @override
   void initState() {
@@ -38,20 +39,20 @@ class _CalendarPageState extends State<CalendarPage> {
   }
 
   loadPreviousEvents() {
-    mySelectedEvents = {//여기에 입력되어야 캘린더에 유지됨
+    mySelectedEvents = {
+      //여기에 입력되어야 캘린더에 유지됨
       "2023-09-13": [
         //{"eventDescp": "11", "eventTitle": "111"},
         //{"eventDescp": "22", "eventTitle": "22"}
-        {"eventTitle": "11",
-         "eventDay": "11",
-         "eventTime": "11",
-         "eventPlace": "11",
+        {
+          "eventTitle": "11",
+          "eventDay": "11",
+          "eventTime": "11",
+          "eventPlace": "11",
         }
       ],
-      
     };
   }
-  
 
   List _listOfDayEvents(DateTime dateTime) {
     if (mySelectedEvents[DateFormat('yyyy-MM-dd').format(dateTime)] != null) {
@@ -130,35 +131,33 @@ class _CalendarPageState extends State<CalendarPage> {
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
-          
           children: [
-            
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                //ElevatedButton.icon( onPressed: () { // Respond to button press }, icon: Icon(Icons.add, size: 18), label: Text("CONTAINED BUTTON"), )
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text(
-                    '취소', 
-                    style: TextStyle(
-                      fontSize: 17,
-                      color:  Color.fromARGB(255, 83, 83, 84),
-                    ), // Colors.grey.shade300
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              //ElevatedButton.icon( onPressed: () { // Respond to button press }, icon: Icon(Icons.add, size: 18), label: Text("CONTAINED BUTTON"), )
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text(
+                  '취소',
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: Color.fromARGB(255, 83, 83, 84),
+                  ), // Colors.grey.shade300
+                ),
+              ),
+              const SizedBox(
+                width: 50,
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text(
+                  '추가',
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: Color.fromARGB(255, 184, 138, 230),
                   ),
                 ),
-                const SizedBox(width: 50,),
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text(
-                    '추가', 
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Color.fromARGB(255, 184, 138, 230),
-                    ),
-                  ),
-                ),
-                /*
+              ),
+              /*
                 ElevatedButton.icon( 
                   style: ElevatedButton.styleFrom( 
                     backgroundColor: Colors.white,
@@ -170,15 +169,14 @@ class _CalendarPageState extends State<CalendarPage> {
                   ), 
                 ),
                 */
-              ]
-            ),
+            ]),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, //사이 공간 동일
-              children: [
-                //ElevatedButton.icon( onPressed: () { // Respond to button press }, icon: Icon(Icons.add, size: 18), label: Text("CONTAINED BUTTON"), )
-                //ElevatedButton( onPressed: () { // Respond to button press }, child: Text('CONTAINED BUTTON'), )
-                
-                /*ToggleButtons( 
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly, //사이 공간 동일
+                children: [
+                  //ElevatedButton.icon( onPressed: () { // Respond to button press }, icon: Icon(Icons.add, size: 18), label: Text("CONTAINED BUTTON"), )
+                  //ElevatedButton( onPressed: () { // Respond to button press }, child: Text('CONTAINED BUTTON'), )
+
+                  /*ToggleButtons( 
                   color: Colors.black.withOpacity(0.60), 
                   selectedColor: Color(0xFF6200EE), 
                   selectedBorderColor: Color(0xFF6200EE), 
@@ -208,53 +206,58 @@ class _CalendarPageState extends State<CalendarPage> {
                       ], 
                     ),
                 */
-                
-                ElevatedButton( 
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 27.0),
-                    backgroundColor: Colors.grey.shade300, //primary: Colors.
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                  ),
-                    onPressed: () => Navigator.pop(context), 
-                  child: Text('내 일정', 
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                //const SizedBox(width: 25,),
-                ElevatedButton( 
-                  style: ElevatedButton.styleFrom( 
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    backgroundColor: Colors.grey.shade300, //primary: Colors.
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                  ),
-                    onPressed: () => Navigator.pop(context), 
-                  child: Text('모임 일정', 
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                // 둘 중 하나 선택하는 버튼으로 바꿀까(위 주석처리 연구)
-                //모두에게 공개 체크박스
-              ]
-            ),
 
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 27.0),
+                      backgroundColor: Colors.grey.shade300, //primary: Colors.
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                    ),
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(
+                      '내 일정',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  //const SizedBox(width: 25,),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      backgroundColor: Colors.grey.shade300, //primary: Colors.
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                    ),
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(
+                      '모임 일정',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  // 둘 중 하나 선택하는 버튼으로 바꿀까(위 주석처리 연구)
+                  //모두에게 공개 체크박스
+                ]),
             Row(
               children: [
-                const SizedBox(width: 10,),
-                Text('제목',
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  '제목',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
                   ),
                 ),
-                const SizedBox(width: 25,),
+                const SizedBox(
+                  width: 25,
+                ),
                 Container(
                   //margin: EdgeInsets.all(8),
                   child: TextField(
@@ -266,46 +269,52 @@ class _CalendarPageState extends State<CalendarPage> {
                 ),
               ],
             ),
-
             Row(
               children: [
-                const SizedBox(width: 10,),
-                Text('날짜',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
+                const SizedBox(
+                  width: 10,
                 ),
-                const SizedBox(width: 25,),
-                Container(
-                  //margin: EdgeInsets.all(8),
-                  child: TextField(
-                    controller: choiceDayController,
-                    textCapitalization: TextCapitalization.words,
-                    //decoration: const InputDecoration(labelText: '날짜',),
-                    /*
-                    margin: EdgeInsets.all(8),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400),),
-                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey.shade400),),
-                    ),
-                    */
-                  ),
-                  width: 150,
-                ),
+                ElevatedButton(
+                    onPressed: () {
+                      showCupertinoModalPopup(
+                        context: context,
+                        builder: (context) {
+                          return Container(
+                            height: MediaQuery.of(context).size.height * 0.4,
+                            color: Color.fromARGB(255, 184, 138, 230),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('입력')),
+
+                                  Expanded(child: buildDatePicker())
+                            ]),
+                          );
+                        },
+                      );
+                    },
+                    child: Text(today.toString()))
               ],
             ),
-
             Row(
               children: [
-                const SizedBox(width: 10,),
-                Text('시간',
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  '시간',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
                   ),
                 ),
-                const SizedBox(width: 25,),
+                const SizedBox(
+                  width: 25,
+                ),
                 Container(
                   //margin: EdgeInsets.all(8),
                   child: TextField(
@@ -317,17 +326,21 @@ class _CalendarPageState extends State<CalendarPage> {
                 ),
               ],
             ),
-
             Row(
               children: [
-                const SizedBox(width: 10,),
-                Text('장소',
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  '장소',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
                   ),
                 ),
-                const SizedBox(width: 25,),
+                const SizedBox(
+                  width: 25,
+                ),
                 Container(
                   //margin: EdgeInsets.all(8),
                   child: TextField(
@@ -340,11 +353,9 @@ class _CalendarPageState extends State<CalendarPage> {
               ],
             ),
           ],
-
         ),
 
         //actions: [] 원래위치
-        
       ),
     );
   }
@@ -355,12 +366,12 @@ class _CalendarPageState extends State<CalendarPage> {
       body: Column(
         children: [
           TableCalendar(
-            // 오류 locale:'ko_KR.UTF-8',
-
             firstDay: DateTime.utc(1900, 1, 1), //DateTime(2022),
             lastDay: DateTime.utc(2999, 12, 31), //DateTime(2023),
             focusedDay: DateTime.now(),
-            
+
+            weekendDays: [7],
+
             calendarStyle: CalendarStyle(
               canMarkersOverflow: true, //마커 영역 밖으로 안나감 : t
               markerSize: 8.0,
@@ -371,27 +382,53 @@ class _CalendarPageState extends State<CalendarPage> {
                 shape: BoxShape.circle,
               ),
             ),
-            
+            headerStyle: HeaderStyle(
+              leftChevronIcon: Icon(
+                Icons.chevron_left,
+                color: Color.fromARGB(255, 184, 138, 230),
+              ),
+              rightChevronIcon: Icon(Icons.chevron_right,
+                  color: Color.fromARGB(255, 184, 138, 230)),
+            ),
+
             //여기부터 기존과 다름
             calendarFormat: _calendarFormat,
             calendarBuilders: CalendarBuilders(dowBuilder: (Context, day) {
               switch (day.weekday) {
                 case 1:
-                  return Center(child: Text('월'),);
+                  return Center(
+                    child: Text('월'),
+                  );
                 case 2:
-                  return Center(child: Text('화'),);
+                  return Center(
+                    child: Text('화'),
+                  );
                 case 3:
-                  return Center(child: Text('수'),);
+                  return Center(
+                    child: Text('수'),
+                  );
                 case 4:
-                  return Center(child: Text('목'),);
+                  return Center(
+                    child: Text('목'),
+                  );
                 case 5:
-                  return Center(child: Text('금'),);
+                  return Center(
+                    child: Text('금'),
+                  );
                 case 6:
-                  return Center(child: Text('토',
-                      style: TextStyle(color: Colors.blue),),);
+                  return Center(
+                    child: Text(
+                      '토',
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  );
                 case 7:
-                  return Center(child: Text('일',
-                      style: TextStyle(color: Colors.red),),);
+                  return Center(
+                    child: Text(
+                      '일',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  );
               }
             }),
             onDaySelected: (selectedDay, focusedDay) {
@@ -420,7 +457,6 @@ class _CalendarPageState extends State<CalendarPage> {
             },
             eventLoader: _listOfDayEvents,
           ),
-          
           ..._listOfDayEvents(_selectedDate!).map(
             (myEvents) => ListTile(
               leading: const Icon(
@@ -439,10 +475,25 @@ class _CalendarPageState extends State<CalendarPage> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _showAddEventDialog(),
         label: const Text('추가'),
-        icon: Icon(Icons.add,),
+        icon: Icon(
+          Icons.add,
+        ),
         backgroundColor: Color.fromARGB(255, 214, 201, 227),
         //splashColor: Color.fromARGB(255, 184, 138, 230),
       ),
     );
   }
+
+  Widget buildDatePicker() => SizedBox(
+        height: 150,
+        child: CupertinoDatePicker(
+          minimumYear: 2000,
+          maximumYear: 2999,
+          initialDateTime: today,
+          mode: CupertinoDatePickerMode.date,
+          onDateTimeChanged: (today) => setState(
+            () => this.today = today,
+          ),
+        ),
+      );
 }

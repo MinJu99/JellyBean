@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test/components/drawer.dart';
 import 'package:test/components/my_textfield.dart';
-import 'package:test/components/wall_post.dart';
 import 'package:test/pages/profile_page.dart';
 import 'package:test/pages/setting_page.dart';
 
