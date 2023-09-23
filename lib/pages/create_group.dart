@@ -197,32 +197,37 @@ class _CreateGroupState extends State<CreateGroup> {
           //SizedBox(
           //  height: 50,
           //),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back_ios),
-                  iconSize: 30,
-                  onPressed: goToChosenPage,
-                ),
-                Expanded(
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        MyButtonGroup(
-                          text: "        생성하기        ", //버튼 안 글 수정(야매 죄송염) --> 변경필요
-                          onTap: createGroup,  //눌렀을 때 함수
-                          
-                        ),
-                      ],
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back_ios),
+                      iconSize: 30,
+                      onPressed: goToChosenPage,
                     ),
-                    //height: 100,
-                  ),
-                )
-              ],
-            ),
+                    Expanded(
+                      child: Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            MyButtonGroup( //elavated button으로 변경
+                              text: "        생성하기        ", //버튼 안 글 수정(야매 죄송염) --> 변경필요
+                              onTap: createGroup,  //눌렀을 때 함수
+                              
+                            ),
+                          ],
+                        ),
+                        //height: 100,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(height: 40,),
+            ],
           ),
         ],
       ),

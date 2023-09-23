@@ -114,16 +114,18 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
                 )
               ],
             ),
-            //const SizedBox(
-            //  height: 100,
-            //),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back_ios),
-                iconSize: 30,
-                onPressed: goToGroupListPage,
-              ),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back_ios),
+                    iconSize: 30,
+                    onPressed: goToGroupListPage,
+                  ),
+                ),
+                const SizedBox(height: 40,),
+              ],
             ),
           ],
         ),

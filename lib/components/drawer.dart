@@ -22,6 +22,7 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Colors.white,
+      width: 250, //추가(09/22)
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

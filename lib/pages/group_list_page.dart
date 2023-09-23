@@ -122,19 +122,25 @@ class _GroupListPageState extends State<GroupListPage> {
                     itemCount: (docIDs.length - 1),
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListTile(
-                          title: GetGroupName(documentId: docIDs[index]),
-                          tileColor: Colors.grey[300],
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MainPage(
-                                        groupId: docIDs[index],
-                                      )),
-                            );
-                          },
+                        padding: EdgeInsets.fromLTRB(20,20,20,0),  //여기 수정
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey[200],
+                            ),
+                          child: ListTile(
+                            title: GetGroupName(documentId: docIDs[index]),
+                            textColor: Colors.black,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MainPage(
+                                          groupId: docIDs[index],
+                                        )),
+                              );
+                            },
+                          ),
                         ),
                       );
                     },
