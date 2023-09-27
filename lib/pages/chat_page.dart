@@ -102,7 +102,6 @@ class _ChatState extends State<Chat> {
         children: [
           Expanded(
             child: TextField(
-              
               keyboardType: TextInputType.multiline,
               maxLines: null,
               controller: _messageController,

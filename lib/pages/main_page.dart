@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:test/components/logo.dart';
 import 'package:test/pages/group_list_page.dart';
 import 'package:test/pages/inquiry_page.dart';
 import 'package:test/pages/notice_page.dart';
@@ -95,7 +96,8 @@ class _MainPageState extends State<MainPage> {
     getPages();
     super.initState();
   }
-final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,8 +112,13 @@ final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
       body: 
       Stack(
         alignment: Alignment.topRight, //버튼 우측
-        children: [_pages[_selectedIndex],
-          
+        children: [
+          _pages[_selectedIndex],
+          Positioned(
+            top: 5,
+            left: 10,
+            child: logo(),
+            ),
           Positioned(
             top: 30,
             right:20,
@@ -122,13 +129,13 @@ final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
               onPressed: () { 
                 _globalKey.currentState!.openEndDrawer();//openDrawer->openEndDrawer
               },
-          ),
+            ),
           ),
         ],
-          ),
-     
+      ),
       
-      /*appBar: AppBar(
+      /* 여기는 혹시몰라 남겨둔 앱바...(아련)
+      appBar: AppBar(
         title: GetGroupName(documentId: widget.groupId),
         backgroundColor: const Color.fromARGB(255,211,195,227),
       ),
@@ -142,8 +149,6 @@ final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
         ),
       ),*/
       //body: _pages[_selectedIndex], 
-      
-
       
       bottomNavigationBar: Container(
         

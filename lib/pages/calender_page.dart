@@ -363,6 +363,7 @@ class _CalendarPageState extends State<CalendarPage> {
       backgroundColor: Colors.white, //얘 추가(09/22)
       body: Column(
         children: [
+          const SizedBox(height: 75,), // 얘 추가(09/27)
           TableCalendar(
             firstDay: DateTime.utc(1900, 1, 1), //DateTime(2022),
             lastDay: DateTime.utc(2999, 12, 31), //DateTime(2023),

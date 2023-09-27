@@ -39,11 +39,11 @@ class TopNeuCard extends StatelessWidget {
             children: [
               Text(
                 'My Point', 
-                style: TextStyle(color: Colors.grey[500], fontSize: 12),
+                style: TextStyle(color: Colors.grey[500], fontSize: 15),
               ),
               Text(
                 balance,
-                style: TextStyle(color: Colors.grey[800], fontSize: 30),
+                style: TextStyle(color: Colors.grey[800], fontSize: 35),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,9 +51,9 @@ class TopNeuCard extends StatelessWidget {
                   Row(
                     children: [
                       const Icon(Icons.arrow_upward),
-                      Column(
+                      Row(
                         children: [
-                          const Text('입금액'),
+                          const Text('입금 '),
                           Text(income),
                         ],
                       ),
@@ -62,9 +62,9 @@ class TopNeuCard extends StatelessWidget {
                   Row(
                     children: [
                       const Icon(Icons.arrow_downward),
-                      Column(
+                      Row(
                         children: [
-                          const Text('지출액'),
+                          const Text('지출 '),
                           Text(expense),
                         ],
                       ),
