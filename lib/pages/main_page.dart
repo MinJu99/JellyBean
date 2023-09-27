@@ -109,8 +109,6 @@ final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
       ),
       body: 
       Stack(
-        
-        
         alignment: Alignment.topRight, //버튼 우측
         children: [_pages[_selectedIndex],
           
