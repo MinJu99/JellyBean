@@ -95,12 +95,43 @@ class _MainPageState extends State<MainPage> {
     getPages();
     super.initState();
   }
-
+final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _globalKey,
+      endDrawer: MyDrawer(  //Drawer->endDrawer
+          onProfileTap: goToProfilePage,
+          onSignOut: signOut,
+          onHomeTap: goToGListPage,
+          onNoticeTap: goToNoticePage,
+          onInquiryTap: goToInquiryPage,
+      ),
+      body: 
+      Stack(
+        
+        
+        alignment: Alignment.topRight, //버튼 우측
+        children: [_pages[_selectedIndex],
+          
+          Positioned(
+            top: 30,
+            right:20,
+            child: IconButton(
+              //padding: const EdgeInsets.all(30),
+              icon: Icon(Icons.menu), 
+              color: Colors.black,
+              onPressed: () { 
+                _globalKey.currentState!.openEndDrawer();//openDrawer->openEndDrawer
+              },
+          ),
+          ),
+       
+        ],
+          ),
+     
       
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: GetGroupName(documentId: widget.groupId),
         backgroundColor: const Color.fromARGB(255,211,195,227),
       ),
@@ -112,8 +143,11 @@ class _MainPageState extends State<MainPage> {
           onNoticeTap: goToNoticePage,// 여기 수정함
           onInquiryTap: goToInquiryPage,
         ),
-      ),
-      body: _pages[_selectedIndex],
+      ),*/
+      //body: _pages[_selectedIndex], 
+      
+
+      
       bottomNavigationBar: Container(
         
         color: Colors.white, //const Color.fromARGB(255,211,195,227),
