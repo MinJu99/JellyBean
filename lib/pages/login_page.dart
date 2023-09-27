@@ -87,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                       fontSize: 17,
                     ),
                   ),
-                  //const SizedBox(width: 10,),
+                  const SizedBox(width: 10,),
                   SizedBox(
                     width: 200,
                     child: TextField(

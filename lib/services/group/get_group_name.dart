@@ -24,7 +24,7 @@ class GetGroupName extends StatelessWidget {
               snapshot.data!.data() as Map<String, dynamic>;
           return Text('${data['group name']}');
         }
-        return const Text('loading...');
+        return const Text('JellyBean');
       }),
     );
   }

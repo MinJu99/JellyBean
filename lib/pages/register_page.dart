@@ -143,28 +143,38 @@ class _RegisterPageState extends State<RegisterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(width: 20,),
-                  const Text('ID                  ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
-                  ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                       // fillColor: Colors.white,
-                        //filled: true,
-                        hintText: 'email',
-                        hintStyle: TextStyle(color: Colors.grey[500]),
+                  Row(
+                    children: [
+                      const SizedBox(width: 40,),
+                      const Text('ID',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        ),
                       ),
-                      obscureText: false,
-                    ),
+                    ],
                   ),
-                  const SizedBox(width: 20,),
+                  
+                  //const SizedBox(width: 10,),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                           // fillColor: Colors.white,
+                            //filled: true,
+                            hintText: 'email',
+                            hintStyle: TextStyle(color: Colors.grey[500]),
+                          ),
+                          obscureText: false,
+                        ),
+                      ),
+                      const SizedBox(width: 40,),
+                    ],
+                  ),
+                  
                 ],
               ),
 
@@ -173,12 +183,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const SizedBox(width: 20,),
-                  const Text('비밀번호        ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
-                  ),
+                      const Text('비밀번호',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                      ),
+                      //const SizedBox(width: 45,),
                   //const SizedBox(width: 10,),
                   SizedBox(
                     width: 200,
@@ -192,14 +203,19 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const SizedBox(width: 20,),
-                  const Text('비밀번호 확인',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text('비밀번호 확인',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
                   ),
                   //const SizedBox(width: 10,),
                   SizedBox(
