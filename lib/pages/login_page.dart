@@ -80,22 +80,29 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(width: 20,),
-                  const Text('이메일   ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 17,
-                    ),
+                  Row(
+                    children: [
+                      const SizedBox(width: 35,),
+                      const Text('이메일',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: emailController,
-                      obscureText: false,
-                    ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          controller: emailController,
+                          obscureText: false,
+                        ),
+                      ),
+                      const SizedBox(width: 35,),
+                    ],
                   ),
-                  const SizedBox(width: 20,),
                 ],
               ),
 
@@ -107,22 +114,29 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(width: 20,),
-                  const Text('비밀번호',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 17,
-                    ),
+                  Row(
+                    children: [
+                      const SizedBox(width: 35,),
+                      const Text('비밀번호',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                        ),
+                      ),
+                    ],
                   ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: passedController,
-                      obscureText: true,
-                    ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          controller: passedController,
+                          obscureText: true,
+                        ),
+                      ),
+                      const SizedBox(width: 35,),
+                    ],
                   ),
-                  const SizedBox(width: 20,),
                 ],
               ),
 

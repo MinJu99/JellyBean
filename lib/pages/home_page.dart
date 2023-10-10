@@ -17,14 +17,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(20.0),
         child: Container(
           padding: const EdgeInsets.all(8),
           height: 100,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Colors.grey[300],
+              //color: Colors.grey[300],
+              color: Colors.white,
               boxShadow: [
                 BoxShadow(
                     color: Colors.grey.shade500,
@@ -51,6 +53,7 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(color: Colors.grey[800], fontSize: 15),
                 ),
               ],
+              
             ),
           ),
         ),

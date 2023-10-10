@@ -34,14 +34,18 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       body: Column(
         children: [
           Expanded(
             child: _buildMessageList(),
           ),
-          _buildMessageInput(),
+          Container(
+            padding: EdgeInsets.all(10),
+            color: Colors.white,
+            child: _buildMessageInput(),
 
-          const SizedBox(height: 25),
+          ),
         ],
       ),
     );
@@ -93,21 +97,37 @@ class _ChatState extends State<Chat> {
 
   Widget _buildMessageInput() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      padding: const EdgeInsets.symmetric(horizontal: 5.0,),
       child: Row(
         children: [
           Expanded(
-            child: MyTextField(
+            child: TextField(
+              
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
               controller: _messageController,
-              hintText: '메세지를 입력하세요',
+              decoration: const InputDecoration(
+                contentPadding: EdgeInsets.all(10),               
+                fillColor: Colors.white,
+                filled: true,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderSide: BorderSide(color: Color.fromRGBO(189, 189, 189, 1),),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderSide: BorderSide(color: Color.fromRGBO(189, 189, 189, 1),),   //.none, --> 테두리 없는거
+                ),
+              ),
               obscureText: false,
             ),
           ),
           IconButton(
               onPressed: sendMessage,
               icon: const Icon(
-                Icons.arrow_upward,
-                size: 40,
+                Icons.send,
+                size: 30,
+                color: Color.fromARGB(255, 186, 158, 215),
               ))
         ],
       ),

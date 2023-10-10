@@ -106,56 +106,21 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 5),
 
-/*
-              MyTextField(
-                controller: emailController,
-                hintText: 'ID(e-mail)',
-                obscureText: false,
-              ),
-*/
-
-              //id
-/*
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox(width: 20,),
-                  Text('ID',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 17,
-                    ),
-                  ),
-                  //const SizedBox(width: 10,),
-                  Container(
-                    child: MyTextField(
-                      controller: emailController,
-                      hintText: 'ID(e-mail)',
-                      obscureText: false,
-                    ),
-                    width: 200,
-                  ),
-                  const SizedBox(width: 20,),
-                ],
-              ),
-*/
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      const SizedBox(width: 40,),
+                      const SizedBox(width: 30,),
                       const Text('ID',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
                         ),
                       ),
                     ],
                   ),
                   
-                  //const SizedBox(width: 10,),
                   Row(
                     children: [
                       SizedBox(
@@ -171,10 +136,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           obscureText: false,
                         ),
                       ),
-                      const SizedBox(width: 40,),
+                      const SizedBox(width: 30,),
                     ],
                   ),
-                  
                 ],
               ),
 
@@ -182,33 +146,39 @@ class _RegisterPageState extends State<RegisterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(width: 20,),
+                  Row(
+                    children: [
+                      const SizedBox(width: 30,),
                       const Text('비밀번호',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 15,
                         ),
                       ),
-                      //const SizedBox(width: 45,),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: passedController,
-                      obscureText: true,
-                    ),
+                    ],
                   ),
-                  const SizedBox(width: 20,),
+                  
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          controller: passedController,
+                          obscureText: true,
+                        ),
+                      ),
+                      const SizedBox(width: 30,),
+                    ],
+                  ),
                 ],
               ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const SizedBox(width: 20,),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      const SizedBox(width: 30,),
                       const Text('비밀번호 확인',
                         style: TextStyle(
                           color: Colors.black,
@@ -217,15 +187,19 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ],
                   ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: confimPasswordController,
-                      obscureText: true,
-                    ),
+                  
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          controller: confimPasswordController,
+                          obscureText: true,
+                        ),
+                      ),
+                      const SizedBox(width: 30,),
+                    ],
                   ),
-                  const SizedBox(width: 20,),
                 ],
               ),
 
@@ -235,66 +209,90 @@ class _RegisterPageState extends State<RegisterPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(width: 20,),
-                  const Text('이름                ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
+                  Row(
+                    children: [
+                      const SizedBox(width: 30,),
+                      const Text('이름',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
                   ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: nameController,
-                      obscureText: false,
-                    ),
+                  
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          controller: nameController,
+                          obscureText: false,
+                        ),
+                      ),
+                      const SizedBox(width: 30,),
+                    ],
                   ),
-                  const SizedBox(width: 20,),
                 ],
               ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(width: 20,),
-                  const Text('생년월일        ',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
+                  Row(
+                    children: [
+                      const SizedBox(width: 30,),
+                      const Text('생년월일',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
                   ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: birthController,
-                      obscureText: false,
-                    ),
+                  
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          controller: birthController,
+                          obscureText: false,
+                        ),
+                      ),
+                      const SizedBox(width: 30,),
+                    ],
                   ),
-                  const SizedBox(width: 20,),
                 ],
               ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(width: 20,),
-                  const Text('전화번호        ',  //옆에 인증 버튼 만들기
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
+                  Row(
+                    children: [
+                      const SizedBox(width: 30,),
+                      const Text('전화번호',  //옆에 인증 버튼 만들기
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
                   ),
-                  //const SizedBox(width: 10,),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      controller: phoneNumberController,
-                      obscureText: false,
-                    ),
+                  
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          controller: phoneNumberController,
+                          obscureText: false,
+                        ),
+                      ),
+                      const SizedBox(width: 30,),
+                    ],
                   ),
-                  const SizedBox(width: 20,),
                 ],
               ),
 

@@ -72,14 +72,19 @@ class _SearchGroupState extends State<SearchGroup> {
             ],
           ),
 
-          Padding(
-              padding: const EdgeInsets.all(15),
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back_ios),
-                iconSize: 30,
-                onPressed: goToChosenPage,
+          Column(
+            children: [  
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios),
+                  iconSize: 30,
+                  onPressed: goToChosenPage,
+                ),
               ),
-            ),
+              const SizedBox(height: 40,),
+            ],
+          ),
         ],
       ),
     );

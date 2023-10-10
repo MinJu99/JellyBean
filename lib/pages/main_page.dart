@@ -95,15 +95,44 @@ class _MainPageState extends State<MainPage> {
     getPages();
     super.initState();
   }
-
+final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      key: _globalKey,
+      endDrawer: MyDrawer(  //Drawer->endDrawer
+          onProfileTap: goToProfilePage,
+          onSignOut: signOut,
+          onHomeTap: goToGListPage,
+          onNoticeTap: goToNoticePage,
+          onInquiryTap: goToInquiryPage,
+      ),
+      body: 
+      Stack(
+        alignment: Alignment.topRight, //버튼 우측
+        children: [_pages[_selectedIndex],
+          
+          Positioned(
+            top: 30,
+            right:20,
+            child: IconButton(
+              //padding: const EdgeInsets.all(30),
+              icon: Icon(Icons.menu), 
+              color: Colors.black,
+              onPressed: () { 
+                _globalKey.currentState!.openEndDrawer();//openDrawer->openEndDrawer
+              },
+          ),
+          ),
+        ],
+          ),
+     
+      
+      /*appBar: AppBar(
         title: GetGroupName(documentId: widget.groupId),
         backgroundColor: const Color.fromARGB(255,211,195,227),
       ),
-      drawer: SizedBox(width: 250,
+      endDrawer: SizedBox(width: 250,
         child: MyDrawer(
           onProfileTap: goToProfilePage,
           onSignOut: signOut,
@@ -111,36 +140,41 @@ class _MainPageState extends State<MainPage> {
           onNoticeTap: goToNoticePage,// 여기 수정함
           onInquiryTap: goToInquiryPage,
         ),
-      ),
-      body: _pages[_selectedIndex],
+      ),*/
+      //body: _pages[_selectedIndex], 
+      
+
+      
       bottomNavigationBar: Container(
-        color: const Color.fromARGB(255,211,195,227), //Colors.black,
+        
+        color: Colors.white, //const Color.fromARGB(255,211,195,227),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7),  //가로 세로
+          //padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7),  //원본
+          padding: const EdgeInsets.fromLTRB(15,5,15,40),
           child: GNav(
-            backgroundColor: const Color.fromARGB(255,211,195,227),
-            color: Colors.white,
-            activeColor: Colors.white,
-            tabBackgroundColor: const Color.fromARGB(255, 184, 138, 230),  //눌렀을 때 색
-            gap: 3,                                      //8->3로 변경 //하단바 눌렀을 때 색 변하는 범위
+            backgroundColor: Colors.white,
+            color: Colors.grey[400],
+            activeColor: const Color.fromARGB(255, 186, 158, 215),
+            //tabBackgroundColor: const Color.fromARGB(255, 186, 158, 215),  //눌렀을 때 색
+            //gap: 3, //하단바 눌렀을 때 색 변하는 범위
             onTabChange: _navigateBottomBar,
             padding: const EdgeInsets.all(16),
             tabs: const [
               GButton(
                 icon: Icons.home,
-                text: '홈',
+                text: ' 홈',
               ),
               GButton(
-                icon: Icons.chat_bubble,
-                text: '채팅',
+                icon: Icons.chat_outlined,
+                text: ' 채팅',
               ),
               GButton(
                 icon: Icons.calendar_month,
-                text: '일정',
+                text: ' 일정',
               ),
               GButton(
                 icon: Icons.wallet,
-                text: '정산하기',
+                text: ' 정산',
               ),
             ],
           ),

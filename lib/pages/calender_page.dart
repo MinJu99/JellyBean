@@ -411,6 +411,7 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white, //얘 추가(09/22)
       body: Column(
         children: [
           TableCalendar(
