@@ -77,7 +77,7 @@ class _DepositPageState extends State<DepositPage> {
                 SizedBox(
                   width: 150,
                   child: TextField(
-                    controller: useController,
+                    controller: useController, 
                     textCapitalization: TextCapitalization.words,
                   ),
                 ),
@@ -109,20 +109,21 @@ class _DepositPageState extends State<DepositPage> {
                  icon: const Icon(Icons.camera_alt),
                   color: const Color.fromARGB(255,211,195,227), //누르면 카메라
                   iconSize: 35,
-                  onPressed: () {
-                    print('camera button is clicked');
+                  onPressed: () async {
+                    var picker = ImagePicker();
+                    var image = await picker.pickImage(source: ImageSource.camera);
                   },
                 ),
                 const SizedBox(width: 10,),
                 MaterialButton(
                   color: Colors.white,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  }, 
                   child: const Text(
                     '취소',
                     style: TextStyle(color: Colors.black),
                   ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }, 
                 ),
                 const SizedBox(width: 10,),
                 MaterialButton(
@@ -131,10 +132,9 @@ class _DepositPageState extends State<DepositPage> {
                     '추가',
                     style: TextStyle(color: Colors.black),
                   ),
-                  onPressed: () async {
-                    var picker = ImagePicker();
-                    var image = await picker.pickImage(source: ImageSource.camera);
-                  },
+                  onPressed: () {
+                    Navigator.of(context).pop(); //닫히게 함
+                  }, 
                 )
               ],
             ),
@@ -150,13 +150,14 @@ class _DepositPageState extends State<DepositPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, //grey[300],
+      backgroundColor: Colors.white,  //grey[300],
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(7.0), //15.0
         child: Column(
           children: [
+            const SizedBox(height: 75,),
             SizedBox(
-              height: 150,
+              height: 160,
               child: PageView(
                 scrollDirection: Axis.horizontal,
                 controller: _controller,
@@ -166,18 +167,24 @@ class _DepositPageState extends State<DepositPage> {
                     expense: '\$ 10,000',
                     income: '\$ 30,000'),
                   myPointCard(
-                    balance: '\$ 20,000',
-                    expense: '\$ 10,000',
-                    income: '\$ 30,000'),
+                    balance: '\$ 17,000',
+                    expense: '\$ 2,000',
+                    income: '\$ 8,000'),
                 ],
               ),
             ),
 
-            const SizedBox(height: 10),
+            //const SizedBox(height: 5),
             SmoothPageIndicator(
               controller: _controller, 
               count: 2,
-              //effect: ExpandingDotsEffect(activeDotColor: colors.grey.shade800,),
+              effect: WormEffect(
+                dotHeight: 12,
+                dotWidth: 12,
+                dotColor: Color.fromARGB(255,211,195,227),
+                activeDotColor: Color.fromARGB(255, 186, 158, 215),
+              ),
+              //effect: ExpandingDotsEffect(activeDotColor: Color.fromARGB(255,211,195,227),),
             ),
 
             /*
@@ -189,6 +196,7 @@ class _DepositPageState extends State<DepositPage> {
 
             Expanded(
               child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 12),
                 child: Center(
                   child: Column(
                     children: [
@@ -196,6 +204,7 @@ class _DepositPageState extends State<DepositPage> {
                         height: 20,
                       ),
                       MyTransaction(expenseOrIncome: 'income', transactionName: 'Teaching', money: '300'),
+                      MyTransaction(expenseOrIncome: 'expense', transactionName: 'dinner(09/23)', money: '8000'),
                     ],
                   ),
                 ),

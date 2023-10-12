@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:test/components/logo.dart';
 import 'package:test/pages/create_or_search.dart';
@@ -11,6 +13,7 @@ class SearchGroup extends StatefulWidget {
 
 class _SearchGroupState extends State<SearchGroup> {
   final GcodeController = TextEditingController();
+  String gCode = '';
 
   void goToChosenPage() {
     Navigator.push(
@@ -43,8 +46,8 @@ class _SearchGroupState extends State<SearchGroup> {
                 ),
                 child: const Icon(
                   Icons.search,
-                  size: 40,  //아이콘 사이즈 수정함
-                  color: Color.fromARGB(255, 186, 158, 215),  //색 수정함
+                  size: 40, //아이콘 사이즈 수정함
+                  color: Color.fromARGB(255, 186, 158, 215), //색 수정함
                 ),
               ),
               const SizedBox(
@@ -54,6 +57,11 @@ class _SearchGroupState extends State<SearchGroup> {
                 margin: const EdgeInsets.all(8),
                 width: 200,
                 child: TextField(
+                  onChanged: (val) {
+                    setState(() {
+                      gCode = val;
+                    });
+                  },
                   controller: GcodeController,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -71,9 +79,36 @@ class _SearchGroupState extends State<SearchGroup> {
               ),
             ],
           ),
-
+          StreamBuilder<QuerySnapshot>(
+              stream:
+                  FirebaseFirestore.instance.collection('Groups').snapshots(),
+              builder: (context, snapshot) {
+                return (snapshot.connectionState == ConnectionState.waiting)
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Expanded(
+                      child: ListView.builder(
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (context, index) {
+                          var data = snapshot.data!.docs[index].data()
+                              as Map<String, dynamic>;
+                    
+                          if (gCode.isEmpty) {}
+                    
+                          if (data['GroupCode']
+                              .toString()
+                              .startsWith(gCode.toString())) {
+                            return ListTile(
+                              title: Text(data['GroupName']),
+                            );
+                          }
+                          return Container();
+                        }),
+                    );
+              }),
           Column(
-            children: [  
+            children: [
               Padding(
                 padding: const EdgeInsets.all(15),
                 child: IconButton(
@@ -82,7 +117,9 @@ class _SearchGroupState extends State<SearchGroup> {
                   onPressed: goToChosenPage,
                 ),
               ),
-              const SizedBox(height: 40,),
+              const SizedBox(
+                height: 40,
+              ),
             ],
           ),
         ],

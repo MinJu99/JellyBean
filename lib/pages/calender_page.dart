@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 //import 'package:test/components/plus_button.dart';
@@ -414,6 +412,7 @@ class _CalendarPageState extends State<CalendarPage> {
       backgroundColor: Colors.white, //얘 추가(09/22)
       body: Column(
         children: [
+          const SizedBox(height: 75,), // 얘 추가(09/27)
           TableCalendar(
             // 오류 locale:'ko_KR.UTF-8',
 

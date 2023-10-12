@@ -39,11 +39,11 @@ class myPointCard extends StatelessWidget {
             children: [
               Text(
                 '모임 회비', 
-                style: TextStyle(color: Colors.grey[500], fontSize: 12),
+                style: TextStyle(color: Colors.grey[500], fontSize: 15),
               ),
               Text(
                 balance,
-                style: TextStyle(color: Colors.grey[800], fontSize: 30),
+                style: TextStyle(color: Colors.grey[800], fontSize: 35),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,7 +53,7 @@ class myPointCard extends StatelessWidget {
                       const Icon(Icons.arrow_upward),
                       Column(
                         children: [
-                          const Text('입금액'),
+                          const Text('입금'),
                           Text(income),
                         ],
                       ),
@@ -64,7 +64,7 @@ class myPointCard extends StatelessWidget {
                       const Icon(Icons.arrow_downward),
                       Column(
                         children: [
-                          const Text('지출액'),
+                          const Text('지출'),
                           Text(expense),
                         ],
                       ),
