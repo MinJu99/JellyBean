@@ -50,10 +50,13 @@ class _ShareAndMoveState extends State<ShareAndMove> {
                         SizedBox(
                           height: 15,
                         ),
-                        Row(children: [shareButton('복사하기', () {
-                          Share.share(groupData['GroupCode']);
-                        }),
-                        OutlinedButton(onPressed: goToListPage, child: Text('그룹페이지로 이동하기')),
+                        Row(children: [
+                          shareButton('복사하기', () {
+                            Share.share(groupData['GroupCode']);
+                          }),
+                          OutlinedButton(
+                              onPressed: goToListPage,
+                              child: Text('그룹페이지로 이동하기')),
                         ]),
                       ],
                     )),

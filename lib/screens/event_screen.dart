@@ -93,7 +93,7 @@ class _EventScreenState extends State<EventScreen> {
                     },
                     child: ListTile(
                       title: Text(event.title), 
-                      subtitle: Text(event.date.toIso8601String().substring(0,10)),
+                      subtitle: Text(event.date.substring(0,10),),
                       onTap: () {
                         Navigator.push(
                           context, 
