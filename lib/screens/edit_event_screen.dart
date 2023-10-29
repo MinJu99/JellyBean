@@ -18,7 +18,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
 
   void initState() {
     titleController.text = widget.event.title;
-    dateController.text = widget.event.date; //.toIso8601String().substring(0,10);    
+    dateController.text = widget.event.date.toIso8601String().substring(0,10); //.toIso8601String().substring(0,10);    
   }
   
 
@@ -41,7 +41,7 @@ class _EditEventScreenState extends State<EditEventScreen> {
               onTap: () async {
                 DateTime? newDate = await showDatePicker(
                   context: context, 
-                  initialDate: DateTime.parse(widget.event.date),// widget.event.date, 
+                  initialDate: widget.event.date,// widget.event.date, 
                   firstDate: DateTime(2000), 
                   lastDate: DateTime(2099)
                 );

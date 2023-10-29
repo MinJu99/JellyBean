@@ -6,10 +6,10 @@ import 'package:test/pages/group_list_page.dart';
 import 'package:test/pages/inquiry_page.dart';
 import 'package:test/pages/notice_page.dart';
 import 'package:test/pages/profile_page.dart';
+import 'package:test/screens/event_screen.dart';
 import 'package:test/services/group/get_group_name.dart';
 
 import '../components/drawer.dart';
-import 'calender_page.dart';
 import 'chat_page.dart';
 import 'deposit_page.dart';
 import 'home_page.dart';
@@ -41,7 +41,7 @@ class _MainPageState extends State<MainPage> {
     _pages = [
       const HomePage(),
       Chat(receiverUserID: widget.groupId,),
-      const CalendarPage(),
+      const EventScreen(),
       const DepositPage(),
     ];
   }

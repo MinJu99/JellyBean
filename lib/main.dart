@@ -5,7 +5,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:test/services/auth_service.dart';
 import 'firebase_options.dart';
 import 'screens/event_screen.dart';
-import 'screens/event_calendar.dart';
 
 
 void main() async {

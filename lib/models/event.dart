@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Event {
   final String id;
   final String title;
-  final String date;
+  final DateTime date;
 
   Event({
     required this.id,
@@ -17,7 +17,7 @@ class Event {
     return Event(
       id: doc.id,
       title: data['title'],
-      date: data['date'].toDate(), //따라하면 오류나서 다른거 참고/원본
+      date: (data['date']as Timestamp).toDate(), 
     );
   }
 }
