@@ -11,13 +11,13 @@ class Calendar extends StatefulWidget {
 
 class _CalendarState extends State<Calendar> {
   //DateTime? _selectedDate;
-  DateTime selectedDay = DateTime(
+  DateTime selectedDay = DateTime(  //ㄱㅊ
     DateTime.now().year,
     DateTime.now().month,
     DateTime.now().day,
   );
   //DateTime? _selectedDay;
-  DateTime focusedDay = DateTime.now();
+  DateTime focusedDay = DateTime.now(); //ㄱㅊ
   //DateTime today = DateTime.now();
 
   @override
@@ -49,33 +49,6 @@ class _CalendarState extends State<Calendar> {
                     //selecteDay와 같은 날짜의 모양을 바꿈
                     return isSameDay(selectedDay, day);
                   },
-
-                  /*calendarStyle: CalendarStyle(
-                    selectedDecoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6.0),
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                  /*onDaySelected: (DateTime selectedDay, DateTime focusedDay) {
-                    // 클릭 할 때 state를 변경
-                    setState(() {
-                      this.selectedDay = selectedDay;
-                      // 달력 내에서 다른 달 날짜를 클릭 시 이동하도록 state를 변경
-                      this.focusedDay = selectedDay; //focusedDay;
-                    });
-                  },*/
-                  onDaySelected: (selectedDay, focusedDay) {
-                    if (!isSameDay(_selectedDay, selectedDay)) {
-                      setState(() {
-                        _selectedDay = selectedDay;
-                        today = focusedDay;
-                      });
-                    }
-                  }, */
                 ),
               ),
             ],
