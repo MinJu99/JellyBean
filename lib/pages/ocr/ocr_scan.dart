@@ -1,6 +1,11 @@
+
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:test/pages/ocr/result_screen.dart';
 
 class OcrScan extends StatefulWidget {
   const OcrScan({super.key});
@@ -16,6 +21,8 @@ class _OcrScanState extends State<OcrScan> with WidgetsBindingObserver {
 
   CameraController? _cameraController;
 
+  final _textRecognizer = TextRecognizer();
+
   @override
   void initState() {
     super.initState();
@@ -27,6 +34,8 @@ class _OcrScanState extends State<OcrScan> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _stopCamera();
+    _textRecognizer.close();
     super.dispose();
   }
 
@@ -84,33 +93,32 @@ class _OcrScanState extends State<OcrScan> with WidgetsBindingObserver {
                   }
                 },
               ),
-
-              Scaffold(
-                body: _isPermissonGranted 
-                ? Column(
-                  children: [
-                    Expanded(child: Container()), 
-                    Container(
-                      padding: const EdgeInsets.only(bottom: 30.0),
-                      child: const Center(
-                        child: ElevatedButton(
-                          onPressed: null, 
-                          child: Text('Scan Text'),
+            Scaffold(
+              body: _isPermissonGranted
+                  ? Column(
+                      children: [
+                        Expanded(child: Container()),
+                        Container(
+                          padding: const EdgeInsets.only(bottom: 30.0),
+                          child: Center(
+                            child: ElevatedButton(
+                              onPressed: _scanImage,
+                              child: Text('Scan Text'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : Center(
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                        child: const Text(
+                          'Camera permission denied',
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                  ],
-                )
-                : Center(
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-                    child: const Text(
-                      'Camera permission denied', 
-                      textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-              )
+            )
           ],
         );
       },
@@ -147,5 +155,32 @@ class _OcrScanState extends State<OcrScan> with WidgetsBindingObserver {
     }
 
     setState(() {});
+  }
+
+  Future<void> _scanImage() async {
+    if (_cameraController == null) return;
+
+    final navigator = Navigator.of(context);
+
+    try {
+      final pictureFile = await _cameraController!.takePicture();
+
+      final file = File(pictureFile.path);
+
+      final inputImage = InputImage.fromFile(file);
+      final recognitionText = await _textRecognizer.processImage(inputImage);
+
+      await navigator.push(
+        MaterialPageRoute(
+          builder: (context) => ResultScreen(text: recognitionText.text),
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('An error occured when scanning test'),
+        ),
+      );
+    }
   }
 }
