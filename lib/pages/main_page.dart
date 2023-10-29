@@ -5,6 +5,7 @@ import 'package:test/components/logo.dart';
 import 'package:test/pages/group_list_page.dart';
 import 'package:test/pages/inquiry_page.dart';
 import 'package:test/pages/notice_page.dart';
+import 'package:test/pages/ocr/ocr_scan.dart';
 import 'package:test/pages/profile_page.dart';
 import 'package:test/screens/event_screen.dart';
 import 'package:test/services/group/get_group_name.dart';
@@ -42,7 +43,7 @@ class _MainPageState extends State<MainPage> {
       const HomePage(),
       Chat(receiverUserID: widget.groupId,),
       const EventScreen(),
-      const DepositPage(),
+      const OcrScan(),
     ];
   }
 
