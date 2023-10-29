@@ -15,6 +15,12 @@ class _AddEventScreenState extends State<AddEventScreen> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
 
+  
+  /*final titleController = TextEditingController(); //제목
+  final choiceDayController = TextEditingController(); //날짜
+  final timeController = TextEditingController(); //시간
+  final placeController = TextEditingController(); //장소*/
+
   DateTime? _selectedDate;
 
   @override

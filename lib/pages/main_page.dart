@@ -34,6 +34,7 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       _selectedIndex = index;
     });
+    
   }
 
   List<Widget> _pages = [];
