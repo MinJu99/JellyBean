@@ -45,7 +45,7 @@ class _EventScreenState extends State<EventScreen> {
               context: context, 
               initialDate: _selectedDate ?? DateTime.now(), 
               firstDate: DateTime(2000), 
-            lastDate: DateTime(2099)
+              lastDate: DateTime(2099)
             );
             if (newDate != null) {
               setState((){
@@ -93,12 +93,12 @@ class _EventScreenState extends State<EventScreen> {
                     },
                     child: ListTile(
                       title: Text(event.title), 
-                      subtitle: Text(event.date.substring(0,10),),
+                      subtitle: Text(event.date.substring(0,10),), //Text(event.date.toIso8601String().substring(0,10)),
                       onTap: () {
                         Navigator.push(
                           context, 
                           MaterialPageRoute(
-                            builder: (context)=>EditEventScreen(event: event)));
+                            builder: (context)=>EditEventScreen(event: event))); //83
                       },
                     ),
                   );

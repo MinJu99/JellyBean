@@ -52,6 +52,9 @@ dependencies:
   flutter_form_builder: ^9.1.1
   modal_bottom_sheet: ^2.1.2
   share_plus: ^7.1.0
+  camera: ^0.10.5+5
+  google_mlkit_text_recognition: ^0.10.0
+  permission_handler: ^11.0.1
  
 
 
