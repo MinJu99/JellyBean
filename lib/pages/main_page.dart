@@ -43,7 +43,7 @@ class _MainPageState extends State<MainPage> {
       const HomePage(),
       Chat(receiverUserID: widget.groupId,),
       const EventScreen(),
-      const OcrScan(),
+      const DepositPage(),
     ];
   }
 
