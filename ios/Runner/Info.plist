@@ -61,12 +61,6 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	<key>NSCameraUsageDescription</key> <!--밑이랑 중복3-->
-	<string>To take user profile image</string>
-	<key>NSphotoLibraryUsageDescription</key>
-	<string>To choose user profile image</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Used to capture audio for image picker plugin</string>
 	<key>NSCameraUsageDescription</key> <!--추가함 70,71-->
 	<string>This app needs acces to your camera in order to scan text.</string>
     <key>NSCameraUsageDescription</key>
