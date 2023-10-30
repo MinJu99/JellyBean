@@ -1,17 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:test/components/logo.dart';
-import 'package:test/pages/group_list_page.dart';
-import 'package:test/pages/inquiry_page.dart';
-import 'package:test/pages/notice_page.dart';
-import 'package:test/pages/ocr/ocr_scan.dart';
-import 'package:test/pages/profile_page.dart';
-import 'package:test/pages/testCalendar.dart';
-import 'package:test/screens/event_screen.dart';
 import 'package:test/services/group/get_group_name.dart';
-
 import '../components/drawer.dart';
+import 'package:test/pages/testCalendar.dart';
 import 'chat_page.dart';
 import 'deposit_page.dart';
 import 'home_page.dart';
@@ -50,97 +42,16 @@ class _MainPageState extends State<MainPage> {
     ];
   }
 
-  void goToProfilePage() {
-    Navigator.pop(context);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ProfilePage(),
-      ),
-    );
-  }
-
-  void goToGListPage() {
-    Navigator.pop(context);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const GroupListPage(),
-      ),
-    );
-  }
-
-  void signOut() {
-    FirebaseAuth.instance.signOut();
-  }
-
-  // 추가함
-  void goToNoticePage() {
-    //Navigator.pop(context);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const NoticePage(),
-      ),
-    );
-  }
-
-  // 추가함
-  void goToInquiryPage() {
-    //Navigator.pop(context);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const InquiryPage(),
-      ),
-    );
-  }
-
   @override
   void initState() {
     getPages();
     super.initState();
   }
 
-  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _globalKey,
-      endDrawer: MyDrawer(
-        //Drawer->endDrawer
-        onProfileTap: goToProfilePage,
-        onSignOut: signOut,
-        onHomeTap: goToGListPage,
-        onNoticeTap: goToNoticePage,
-        onInquiryTap: goToInquiryPage,
-      ),
-      body: Stack(
-        alignment: Alignment.topRight, //버튼 우측
-        children: [
-          _pages[_selectedIndex],
-          Positioned(
-            top: 5,
-            left: 10,
-            child: logo(),
-          ),
-          Positioned(
-            top: 30,
-            right: 20,
-            child: IconButton(
-              //padding: const EdgeInsets.all(30),
-              icon: Icon(Icons.menu),
-              color: Colors.black,
-              onPressed: () {
-                _globalKey.currentState!
-                    .openEndDrawer(); //openDrawer->openEndDrawer
-              },
-            ),
-          ),
-        ],
-      ),
-
-      /* 여기는 혹시몰라 남겨둔 앱바...(아련)
+      /*여기는 혹시몰라 남겨둔 앱바...(아련)
       appBar: AppBar(
         title: GetGroupName(documentId: widget.groupId),
         backgroundColor: const Color.fromARGB(255,211,195,227),
@@ -154,7 +65,8 @@ class _MainPageState extends State<MainPage> {
           onInquiryTap: goToInquiryPage,
         ),
       ),*/
-      //body: _pages[_selectedIndex],
+
+      body: _pages[_selectedIndex],
 
       bottomNavigationBar: Container(
         color: Colors.white, //const Color.fromARGB(255,211,195,227),
