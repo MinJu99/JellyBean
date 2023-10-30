@@ -35,7 +35,6 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       _selectedIndex = index;
     });
-    
   }
 
   List<Widget> _pages = [];
@@ -43,8 +42,10 @@ class _MainPageState extends State<MainPage> {
   Future getPages() async {
     _pages = [
       const HomePage(),
-      Chat(receiverUserID: widget.groupId,),
-      const TestCalendar(), //EventScreen(),
+      Chat(
+        receiverUserID: widget.groupId,
+      ),
+      const CalendarPage(), 
       const DepositPage(),
     ];
   }
@@ -83,6 +84,7 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
+
   // 추가함
   void goToInquiryPage() {
     //Navigator.pop(context);
@@ -105,15 +107,15 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _globalKey,
-      endDrawer: MyDrawer(  //Drawer->endDrawer
-          onProfileTap: goToProfilePage,
-          onSignOut: signOut,
-          onHomeTap: goToGListPage,
-          onNoticeTap: goToNoticePage,
-          onInquiryTap: goToInquiryPage,
+      endDrawer: MyDrawer(
+        //Drawer->endDrawer
+        onProfileTap: goToProfilePage,
+        onSignOut: signOut,
+        onHomeTap: goToGListPage,
+        onNoticeTap: goToNoticePage,
+        onInquiryTap: goToInquiryPage,
       ),
-      body: 
-      Stack(
+      body: Stack(
         alignment: Alignment.topRight, //버튼 우측
         children: [
           _pages[_selectedIndex],
@@ -121,22 +123,23 @@ class _MainPageState extends State<MainPage> {
             top: 5,
             left: 10,
             child: logo(),
-            ),
+          ),
           Positioned(
             top: 30,
-            right:20,
+            right: 20,
             child: IconButton(
               //padding: const EdgeInsets.all(30),
-              icon: Icon(Icons.menu), 
+              icon: Icon(Icons.menu),
               color: Colors.black,
-              onPressed: () { 
-                _globalKey.currentState!.openEndDrawer();//openDrawer->openEndDrawer
+              onPressed: () {
+                _globalKey.currentState!
+                    .openEndDrawer(); //openDrawer->openEndDrawer
               },
             ),
           ),
         ],
       ),
-      
+
       /* 여기는 혹시몰라 남겨둔 앱바...(아련)
       appBar: AppBar(
         title: GetGroupName(documentId: widget.groupId),
@@ -151,14 +154,13 @@ class _MainPageState extends State<MainPage> {
           onInquiryTap: goToInquiryPage,
         ),
       ),*/
-      //body: _pages[_selectedIndex], 
-      
+      //body: _pages[_selectedIndex],
+
       bottomNavigationBar: Container(
-        
         color: Colors.white, //const Color.fromARGB(255,211,195,227),
         child: Padding(
           //padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7),  //원본
-          padding: const EdgeInsets.fromLTRB(15,5,15,40),
+          padding: const EdgeInsets.fromLTRB(15, 5, 15, 40),
           child: GNav(
             backgroundColor: Colors.white,
             color: Colors.grey[400],
