@@ -7,6 +7,7 @@ import 'package:test/pages/inquiry_page.dart';
 import 'package:test/pages/notice_page.dart';
 import 'package:test/pages/ocr/ocr_scan.dart';
 import 'package:test/pages/profile_page.dart';
+import 'package:test/pages/testCalendar.dart';
 import 'package:test/screens/event_screen.dart';
 import 'package:test/services/group/get_group_name.dart';
 
@@ -43,7 +44,7 @@ class _MainPageState extends State<MainPage> {
     _pages = [
       const HomePage(),
       Chat(receiverUserID: widget.groupId,),
-      const EventScreen(),
+      const TestCalendar(), //EventScreen(),
       const DepositPage(),
     ];
   }
