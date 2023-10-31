@@ -23,20 +23,20 @@ class _CreateGroupState extends State<CreateGroup> {
   final String currentUserId = FirebaseAuth.instance.currentUser!.uid;
   final userCollection = FirebaseFirestore.instance.collection("users");
   final GroupService _groupService = GroupService();
-  String gCode = "";
 
   bool buttonState = false;
 
   // 그룹 생성후 데이터베이스에 입력 함수
   void createGroupList(String groupId) async {
     if (gNameController.text.isNotEmpty) {
-      await _groupService.createGroupList(groupId, gNameController.text, gCode);
+      await _groupService.createGroupList(groupId, gNameController.text);
     }
   }
 
   void createGroup() {
     if (gNameController.text.isNotEmpty) {
-      gCode = _generateSecureCode();
+      String gName = gNameController.text;
+      String gCode = _generateSecureCode();
       final doc = FirebaseFirestore.instance.collection("Groups").doc();
 
       FirebaseFirestore.instance.collection("Groups").doc(doc.id).set({
@@ -82,9 +82,7 @@ class _CreateGroupState extends State<CreateGroup> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ShareAndMove(
-          documentId: docId,
-        ),
+        builder: (context) => ShareAndMove(documentId: docId,),
       ),
     );
   }
@@ -114,7 +112,6 @@ class _CreateGroupState extends State<CreateGroup> {
 
   @override
   Widget build(BuildContext context) {
-    String logoText = "JellyBean";
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,7 +120,7 @@ class _CreateGroupState extends State<CreateGroup> {
           //const SizedBox(
           //  height: 50,
           //),
-          logo(),
+          const logo(),
 
           Column(children: [
             Row(
@@ -142,8 +139,8 @@ class _CreateGroupState extends State<CreateGroup> {
                   width: 45,
                 ),
                 Container(
-                  margin: const EdgeInsets.all(8),
-                  width: 180, //여기 수정
+                  margin: const EdgeInsets.fromLTRB(8, 0, 8, 5),
+                  width: 180,
                   child: TextField(
                     controller: gNameController,
                     decoration: InputDecoration(
@@ -190,37 +187,36 @@ class _CreateGroupState extends State<CreateGroup> {
                 ),
               ],
             ),
-          ]),
-
-          /*Row(
-            children: [
-              Text(
-                '모임에 회비가 있나요?',
-                style: TextStyle(color: Colors.grey[700]),
-              ),
-              const SizedBox(
-                width: 4,
-              ),
-              GestureDetector(
-                onTap: () {
-                  TextStyle(color: Colors.blue);
-                },
-                child: const Text(
-                  '예',
-                  style: TextStyle(
-                    color: Colors.black,
+            Row(
+              children: [
+                const SizedBox(width: 100,),
+                Text(
+                  '모임에 회비가 있나요?',
+                  style: TextStyle(color: const Color.fromRGBO(97, 97, 97, 1)),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(width: 4,),
+                GestureDetector(
+                  onTap: () {
+                    TextStyle(color: Colors.purple);
+                  },
+                  child: const Text(
+                    'YES',
+                    style: TextStyle(
+                      color: Colors.blue,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),*/
+              ],
+            ),
+          ]),
           //SizedBox(
           //  height: 50,
           //),
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
                 child: Row(
                   children: [
                     IconButton(
@@ -235,7 +231,8 @@ class _CreateGroupState extends State<CreateGroup> {
                           children: <Widget>[
                             MyButtonGroup(
                               //elavated button으로 변경
-                              text: "생성하기", //버튼 안 글 수정(야매 죄송염) --> 변경필요
+                              text:
+                                  "생성하기",
                               onTap: createGroup, //눌렀을 때 함수
                             ),
                           ],
@@ -246,9 +243,7 @@ class _CreateGroupState extends State<CreateGroup> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 40,
-              ),
+              //const SizedBox(height: 40,),
             ],
           ),
         ],
