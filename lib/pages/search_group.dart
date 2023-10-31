@@ -95,7 +95,7 @@ class _SearchGroupState extends State<SearchGroup> {
                             itemBuilder: (context, index) {
                               var data = snapshot.data!.docs[index].data()
                                   as Map<String, dynamic>;
-
+                              
                               if (gCode.isEmpty) {}
 
                               if (data['GroupCode']
@@ -108,7 +108,7 @@ class _SearchGroupState extends State<SearchGroup> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => MainPage(
-                                            groupId: data[index],
+                                            groupId: data['id'],
                                           )),
                                 );
                               },

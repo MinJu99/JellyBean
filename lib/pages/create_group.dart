@@ -44,8 +44,9 @@ class _CreateGroupState extends State<CreateGroup> {
         'CreatorEmail': currentUser.email,
         'Member': memberNumbController.text,
         'GroupCode': gCode,
+        'id': doc.id,
       });
-      
+
       createGroupList(doc.id);
 
       // 생성후 메인페이지로 이동
