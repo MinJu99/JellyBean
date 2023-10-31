@@ -9,6 +9,7 @@ import 'package:test/components/logo.dart';
 import 'package:test/components/plus_button.dart';
 import 'package:test/components/top_card.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:test/services/group/get_logo_name.dart';
 import 'package:test/services/util/swipe_card.dart';
 import '../components/transaction.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -19,7 +20,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test/pages/profile_page.dart';
 
 class DepositPage extends StatefulWidget {
-  const DepositPage({super.key});
+  final String docId;
+  const DepositPage({
+    required this.docId,
+    super.key});
 
   @override
   State<DepositPage> createState() => _DepositPageState();
@@ -346,7 +350,7 @@ class _DepositPageState extends State<DepositPage> {
             Positioned(
               top: 40, //5
               left: 10,
-              child: logo(),
+              child: GetLogoName(documentId: widget.docId),
             ),
             Positioned(
               top: 70, //30

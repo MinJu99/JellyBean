@@ -26,6 +26,7 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
 
   @override
   Widget build(BuildContext context) {
+    String logoText = "JellyBean";
     return Scaffold(
       body: Center(
         child: Column(
@@ -33,7 +34,7 @@ class _CreateOrSearchGroupState extends State<CreateOrSearchGroup> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const logo(),  //logo.dart 수정함
+            logo(),  //logo.dart 수정함
             //const SizedBox(
             //  height: 100,
             //),

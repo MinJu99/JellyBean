@@ -29,18 +29,26 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
+  void groupName() {
+    GroupName = GetGroupName(documentId: widget.groupId).toString();
+  }
+
+  String GroupName = "";
+
   List<Widget> _pages = [];
 
   Future getPages() async {
     _pages = [
-      const HomePage(),
+      HomePage(docID: widget.groupId,),
       Chat(
         receiverUserID: widget.groupId,
       ),
       CalendarPage(
         groupId: widget.groupId,
-      ), 
-      const DepositPage(),
+      ),
+      DepositPage(
+        docId: widget.groupId,
+      ),
     ];
   }
 
@@ -69,7 +77,6 @@ class _MainPageState extends State<MainPage> {
       ),*/
 
       body: _pages[_selectedIndex],
-
       bottomNavigationBar: Container(
         color: Colors.white, //const Color.fromARGB(255,211,195,227),
         child: Padding(

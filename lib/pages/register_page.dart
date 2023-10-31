@@ -84,6 +84,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    String logoText = "JellyBean";
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -93,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               //const SizedBox(height: 50),
 
-              const logo(), //왼쪽 위로 가야되는데 center로 설정해서 못함 이거 우째
+              logo(), //왼쪽 위로 가야되는데 center로 설정해서 못함 이거 우째
 
               //welcome
               Text(

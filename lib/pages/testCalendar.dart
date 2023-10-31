@@ -10,6 +10,8 @@ import 'package:test/pages/calendar.dart'; //
 import 'package:test/pages/profile_page.dart';
 import 'package:test/screens/add_event_screen.dart';
 import 'package:test/screens/edit_event_screen.dart';
+import 'package:test/services/group/get_group_name.dart';
+import 'package:test/services/group/get_logo_name.dart';
 import '../models/event.dart';
 import 'package:test/pages/group_list_page.dart';
 import 'package:test/pages/inquiry_page.dart';
@@ -18,9 +20,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class CalendarPage extends StatefulWidget {
   final String groupId;
-  const CalendarPage({
-    required this.groupId,
-    super.key});
+  const CalendarPage({required this.groupId, super.key});
   @override
   State<CalendarPage> createState() => _TestCalendar();
 }
@@ -80,8 +80,16 @@ class _TestCalendar extends State<CalendarPage> {
   }
 
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+
+  String groupName = "";
+
+  void getGName() {
+    groupName = GetGroupName(documentId: widget.groupId).toString();
+  }
+
   @override
   Widget build(BuildContext context) {
+    getGName();
     return Scaffold(
       key: _globalKey,
       endDrawer: MyDrawer(
@@ -134,7 +142,7 @@ class _TestCalendar extends State<CalendarPage> {
           Positioned(
             top: 40, //5
             left: 10,
-            child: logo(),
+            child: GetLogoName(documentId: widget.groupId,)
           ),
           Positioned(
             top: 70, //30
@@ -271,8 +279,12 @@ class _TestCalendar extends State<CalendarPage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddEventScreen(groupId: widget.groupId,)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AddEventScreen(
+                        groupId: widget.groupId,
+                      )));
         },
         child: Icon(Icons.add),
       ),

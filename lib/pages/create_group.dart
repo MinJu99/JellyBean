@@ -114,6 +114,7 @@ class _CreateGroupState extends State<CreateGroup> {
 
   @override
   Widget build(BuildContext context) {
+    String logoText = "JellyBean";
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +123,7 @@ class _CreateGroupState extends State<CreateGroup> {
           //const SizedBox(
           //  height: 50,
           //),
-          const logo(),
+          logo(),
 
           Column(children: [
             Row(

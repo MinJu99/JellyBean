@@ -59,7 +59,9 @@ class _GroupListPageState extends State<GroupListPage> {
     );
   }
 
-  void goToHomePage() {}
+  void goToHomePage() {
+    initState();
+  }
 
   void signUserOut() {
     final authService = Provider.of<AuthService>(context, listen: false);

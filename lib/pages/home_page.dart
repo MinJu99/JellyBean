@@ -3,6 +3,7 @@ import 'package:test/components/drawer.dart';
 import 'package:test/components/logo.dart';
 import 'package:test/components/my_textfield.dart';
 import 'package:test/pages/setting_page.dart';
+import 'package:test/services/group/get_logo_name.dart';
 import '../components/drawer.dart';
 import 'package:test/pages/group_list_page.dart';
 import 'package:test/pages/inquiry_page.dart';
@@ -10,9 +11,11 @@ import 'package:test/pages/notice_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:test/pages/profile_page.dart';
 
-
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String docID;
+  const HomePage({
+    required this.docID,
+    super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -52,7 +55,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  
+
   void goToInquiryPage() {
     //Navigator.pop(context);
     Navigator.push(
@@ -63,7 +66,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +79,6 @@ final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
         onNoticeTap: goToNoticePage,
         onInquiryTap: goToInquiryPage,
       ),
-      
       body: Stack(
         alignment: Alignment.topRight, //버튼 우측
         children: [
@@ -84,8 +86,7 @@ final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
           Positioned(
             top: 40, //5
             left: 10,
-            child: logo(),
-          ),
+            child: GetLogoName(documentId: widget.docID,)),
           Positioned(
             top: 70, //30
             right: 20,
@@ -100,10 +101,11 @@ final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
             ),
           ),
           Container(
-        child: 
-            Column(
+            child: Column(
               children: [
-                SizedBox(height:130,),
+                SizedBox(
+                  height: 130,
+                ),
                 Container(
                   padding: const EdgeInsets.all(8),
                   margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -123,33 +125,30 @@ final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
                             offset: Offset(-4.0, -4.0),
                             blurRadius: 15.0,
                             spreadRadius: 1.0),*/
-                      ]
-                    ),
+                      ]),
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
                           '공 지 사 항',
-                          style: TextStyle(color: Colors.grey[500], fontSize: 15),
+                          style:
+                              TextStyle(color: Colors.grey[500], fontSize: 15),
                         ),
                         Text(
                           '등록된 공지사항이 없습니다.',
-                          style: TextStyle(color: Colors.grey[800], fontSize: 17),
+                          style:
+                              TextStyle(color: Colors.grey[800], fontSize: 17),
                         ),
                       ],
-                      
                     ),
                   ),
                 ),
               ],
             ),
-        ),
+          ),
         ],
-        
       ),
-      
-      
     );
   }
 }

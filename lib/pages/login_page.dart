@@ -58,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
    Widget build(BuildContext context) {
+    String logoText = "JellyBean";
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -65,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
           child: SingleChildScrollView(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const logo(),
+              logo(),
               const SizedBox(height: 10),
               Text(
                 '아이디와 비밀번호를 입력하여 로그인하세요!',

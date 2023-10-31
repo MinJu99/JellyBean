@@ -26,12 +26,13 @@ class _SearchGroupState extends State<SearchGroup> {
 
   @override
   Widget build(BuildContext context) {
+    String logoText = "JellyBean";
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const logo(),
+          logo(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -88,24 +89,24 @@ class _SearchGroupState extends State<SearchGroup> {
                         child: CircularProgressIndicator(),
                       )
                     : Expanded(
-                      child: ListView.builder(
-                        itemCount: snapshot.data!.docs.length,
-                        itemBuilder: (context, index) {
-                          var data = snapshot.data!.docs[index].data()
-                              as Map<String, dynamic>;
-                    
-                          if (gCode.isEmpty) {}
-                    
-                          if (data['GroupCode']
-                              .toString()
-                              .startsWith(gCode)) {
-                            return ListTile(
-                              title: Text(data['GroupName']),
-                            );
-                          }
-                          return Container();
-                        }),
-                    );
+                        child: ListView.builder(
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context, index) {
+                              var data = snapshot.data!.docs[index].data()
+                                  as Map<String, dynamic>;
+
+                              if (gCode.isEmpty) {}
+
+                              if (data['GroupCode']
+                                  .toString()
+                                  .startsWith(gCode)) {
+                                return ListTile(
+                                  title: Text(data['GroupName']),
+                                );
+                              }
+                              return Container();
+                            }),
+                      );
               }),
           Column(
             children: [

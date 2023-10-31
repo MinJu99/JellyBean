@@ -152,12 +152,12 @@ class _EventScreenState extends State<EventScreen> {
           ),
       ),
     
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const AddEventScreen()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddEventScreen(String)));
         },
         child: Icon(Icons.add),
-      ),
+      ),*/
     );
   }
 }
