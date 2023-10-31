@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:test/components/logo.dart';
+import 'package:test/pages/add_newMem.dart';
 import 'package:test/pages/create_or_search.dart';
 import 'package:test/pages/main_page.dart';
 
@@ -107,8 +108,10 @@ class _SearchGroupState extends State<SearchGroup> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => MainPage(
-                                            groupId: data['id'],
+                                      builder: (context) => NewMember(
+                                            documentId: data['id'],
+                                            gCode: data['GroupCode'],
+                                            gName: data['GroupName'],
                                           )),
                                 );
                               },
