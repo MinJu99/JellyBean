@@ -51,9 +51,9 @@ class myPointCard extends StatelessWidget {
                   Row(
                     children: [
                       const Icon(Icons.arrow_upward),
-                      Column(
+                      Row(
                         children: [
-                          const Text('입금'),
+                          const Text('입금 '),
                           Text(income),
                         ],
                       ),
@@ -62,9 +62,9 @@ class myPointCard extends StatelessWidget {
                   Row(
                     children: [
                       const Icon(Icons.arrow_downward),
-                      Column(
+                      Row(
                         children: [
-                          const Text('지출'),
+                          const Text('지출 '),
                           Text(expense),
                         ],
                       ),

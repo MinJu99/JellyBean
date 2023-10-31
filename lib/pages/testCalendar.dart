@@ -180,8 +180,8 @@ class _TestCalendar extends State<CalendarPage> {
                 locale: 'ko_KR', //
                 firstDay: DateTime.utc(1900, 1, 1), //DateTime(2022),
                 lastDay: DateTime.utc(2999, 12, 31), //DateTime(2023),
-                //focusedDay: DateTime.now(),
-                focusedDay: focusedDay,
+                focusedDay: DateTime.now(),
+                //focusedDay: focusedDay,
                 calendarStyle: CalendarStyle(
                   canMarkersOverflow: true, //마커 영역 밖으로 안나감 : t
                   markerSize: 8.0,
@@ -193,6 +193,7 @@ class _TestCalendar extends State<CalendarPage> {
                   ),
                 ),
                 headerStyle: HeaderStyle(
+                  formatButtonVisible: false,
                   leftChevronIcon: Icon(
                     Icons.chevron_left,
                     color: Color.fromARGB(255, 184, 138, 230),
@@ -202,56 +203,7 @@ class _TestCalendar extends State<CalendarPage> {
                 ),
 
                 calendarFormat: _calendarFormat,
-                calendarBuilders: CalendarBuilders(dowBuilder: (Context, day) {
-                  switch (day.weekday) {
-                    case 1:
-                      return Center(
-                        child: Text('월'),
-                      );
-                    case 2:
-                      return Center(
-                        child: Text('화'),
-                      );
-                    case 3:
-                      return Center(
-                        child: Text('수'),
-                      );
-                    case 4:
-                      return Center(
-                        child: Text('목'),
-                      );
-                    case 5:
-                      return Center(
-                        child: Text('금'),
-                      );
-                    case 6:
-                      return Center(
-                        child: Text(
-                          '토',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                      );
-                    case 7:
-                      return Center(
-                        child: Text(
-                          '일',
-                          style: TextStyle(color: Colors.red),
-                        ),
-                      );
-                  }
-                  return null;
-                }, 
-                markerBuilder: (context, date, dynamic event) {
-                  if (event.isNotEmpty) {
-                    return Container(
-                      width: 35,
-                      decoration: BoxDecoration(
-                          color: Colors.blue.withOpacity(0.2),
-                          shape: BoxShape.circle),
-                    );
-                  }
-                },
-                ),
+              
                 onDaySelected: (DateTime selected, DateTime focusedDay) {
                   //선택된 날짜 상태 갱신
                   if (!isSameDay(_selectedDate, selected)) {

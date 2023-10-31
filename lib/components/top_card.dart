@@ -8,7 +8,7 @@ class TopNeuCard extends StatelessWidget {
     required this.balance,
     required this.expense,
     required this.income,
-  });
+  }); 
   final String balance;
   final String income;
   final String expense;

@@ -144,6 +144,20 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 40,),
+                Row(
+                  children: [
+                    Container(
+                      child: Image.asset(
+                        'lib/images/app_icon.jpg',
+                        width: 200,
+                        height: 200,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(width: 30,),
+                  ],
+                ),
               ],
             ),
           ),

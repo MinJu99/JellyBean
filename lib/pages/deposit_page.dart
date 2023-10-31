@@ -48,7 +48,7 @@ class _DepositPageState extends State<DepositPage> {
 
   final moneyController = TextEditingController(); //금액
   final useController = TextEditingController(); //사용처
-  final breakdownController = TextEditingController(); //내역
+  //final breakdownController = TextEditingController(); //내역
 
   //새로운 데이터 입력
   // 데이터 로딩까지 기다리기
@@ -103,6 +103,7 @@ class _DepositPageState extends State<DepositPage> {
     showDialog(
       context: context,
       builder: (context) {
+        MainAxisAlignment.spaceBetween; //
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
@@ -161,53 +162,17 @@ class _DepositPageState extends State<DepositPage> {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Text(
-                      '내역    ',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 25,
-                    ),
-                    SizedBox(
-                      width: 150,
-                      child: TextField(
-                        controller: breakdownController,
-                        textCapitalization: TextCapitalization.words,
-                      ),
-                    ),
-                  ],
-                ),
                 const SizedBox(
                   height: 30,
                 ),
                 _buildPhotoArea(),
                 const SizedBox(
-                  height: 30,
+                  height: 15,
                 ),
                 _buildButton(),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    /*IconButton(
-                    icon: const Icon(Icons.camera_alt),
-                    color: const Color.fromARGB(255, 211, 195, 227), //누르면 카메라
-                    iconSize: 35,
-                    onPressed: () async {
-                      var picker = ImagePicker();
-                      var image =
-                          await picker.pickImage(source: ImageSource.camera);
-                    },
-                  ),*/
-                    const SizedBox(
-                      width: 10,
-                    ),
                     MaterialButton(
                       color: Colors.white,
                       child: const Text(
@@ -222,10 +187,7 @@ class _DepositPageState extends State<DepositPage> {
                         );
                         Navigator.of(context).pop();
                       },
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
+                    ),   
                     MaterialButton(
                       color: Colors.white,
                       child: const Text(
@@ -258,13 +220,13 @@ class _DepositPageState extends State<DepositPage> {
   Widget _buildPhotoArea() {
     return _image != null
         ? Container(
-            width: 300,
-            height: 300,
+            width: 210, 
+            height: 280,
             child: Image.file(File(_image!.path)), //가져온 이미지를 화면에 띄워주는 코드
           )
         : Container(
-            width: 300,
-            height: 300,
+            width: 210, 
+            height: 280, 
             color: Colors.grey,
           );
   }
@@ -272,6 +234,7 @@ class _DepositPageState extends State<DepositPage> {
   Widget _buildButton() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ElevatedButton(
           onPressed: () {
@@ -378,13 +341,13 @@ class _DepositPageState extends State<DepositPage> {
                       controller: _controller,
                       children: const [
                         TopNeuCard(
-                            balance: '\$ 20,000',
-                            expense: '\$ 10,000',
-                            income: '\$ 30,000'),
+                            balance: '20,000',
+                            expense: '10,000',
+                            income: '30,000'),
                         myPointCard(
-                            balance: '\$ 17,000',
-                            expense: '\$ 2,000',
-                            income: '\$ 8,000'),
+                            balance: '17,000',
+                            expense: '2,000',
+                            income: '8,000'),
                       ],
                     ),
                   ),

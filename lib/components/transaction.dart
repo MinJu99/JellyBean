@@ -33,7 +33,7 @@ class MyTransaction extends StatelessWidget {
                       fontSize: 16,),
                   ),
                   Text(
-                    '${expenseOrIncome == 'expense' ? '-' : '+'} \$ $money',
+                    '${expenseOrIncome == 'expense' ? '-' : '+'} money',
                     style: TextStyle(
                         fontSize: 16,
                         color: (expenseOrIncome == 'expense'
