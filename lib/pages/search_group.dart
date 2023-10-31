@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:test/components/logo.dart';
 import 'package:test/pages/create_or_search.dart';
+import 'package:test/pages/main_page.dart';
 
 class SearchGroup extends StatefulWidget {
   const SearchGroup({super.key});
@@ -102,6 +103,15 @@ class _SearchGroupState extends State<SearchGroup> {
                                   .startsWith(gCode)) {
                                 return ListTile(
                                   title: Text(data['GroupName']),
+                                  onTap:() {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MainPage(
+                                            groupId: data[index],
+                                          )),
+                                );
+                              },
                                 );
                               }
                               return Container();

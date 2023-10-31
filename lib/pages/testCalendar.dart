@@ -26,13 +26,8 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _TestCalendar extends State<CalendarPage> {
-  DateTime? _selectedDate; //이벤트용(event_screen)
-
-  DateTime selectedDay = DateTime(
-    DateTime.now().year,
-    DateTime.now().month,
-    DateTime.now().day,
-  );
+  CalendarFormat _calendarFormat = CalendarFormat.month;
+  DateTime? _selectedDate;
   DateTime focusedDay = DateTime.now();
 
   void goToProfilePage() {
@@ -140,10 +135,11 @@ class _TestCalendar extends State<CalendarPage> {
         alignment: Alignment.topRight,
         children: [
           Positioned(
-            top: 40, //5
-            left: 10,
-            child: GetLogoName(documentId: widget.groupId,)
-          ),
+              top: 40, //5
+              left: 10,
+              child: GetLogoName(
+                documentId: widget.groupId,
+              )),
           Positioned(
             top: 70, //30
             right: 60,
@@ -178,10 +174,6 @@ class _TestCalendar extends State<CalendarPage> {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              /*Text(_selectedDate != null
-                ? _selectedDate!.toIso8601String().substring(0, 10)
-                : "All Events"),*/
-
               SizedBox(height: 110),
               //Calendar(),
               TableCalendar(
@@ -190,16 +182,88 @@ class _TestCalendar extends State<CalendarPage> {
                 lastDay: DateTime.utc(2999, 12, 31), //DateTime(2023),
                 //focusedDay: DateTime.now(),
                 focusedDay: focusedDay,
-                onDaySelected: (DateTime selectedDay, DateTime focusedDay) {
+                calendarStyle: CalendarStyle(
+                  canMarkersOverflow: true, //마커 영역 밖으로 안나감 : t
+                  markerSize: 8.0,
+                  markersMaxCount: 3,
+                  markersAlignment: Alignment.bottomCenter,
+                  markerDecoration: BoxDecoration(
+                    color: Color.fromARGB(255, 184, 138, 230),
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                headerStyle: HeaderStyle(
+                  leftChevronIcon: Icon(
+                    Icons.chevron_left,
+                    color: Color.fromARGB(255, 184, 138, 230),
+                  ),
+                  rightChevronIcon: Icon(Icons.chevron_right,
+                      color: Color.fromARGB(255, 184, 138, 230)),
+                ),
+
+                calendarFormat: _calendarFormat,
+                calendarBuilders: CalendarBuilders(dowBuilder: (Context, day) {
+                  switch (day.weekday) {
+                    case 1:
+                      return Center(
+                        child: Text('월'),
+                      );
+                    case 2:
+                      return Center(
+                        child: Text('화'),
+                      );
+                    case 3:
+                      return Center(
+                        child: Text('수'),
+                      );
+                    case 4:
+                      return Center(
+                        child: Text('목'),
+                      );
+                    case 5:
+                      return Center(
+                        child: Text('금'),
+                      );
+                    case 6:
+                      return Center(
+                        child: Text(
+                          '토',
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      );
+                    case 7:
+                      return Center(
+                        child: Text(
+                          '일',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      );
+                  }
+                  return null;
+                }, 
+                markerBuilder: (context, date, dynamic event) {
+                  if (event.isNotEmpty) {
+                    return Container(
+                      width: 35,
+                      decoration: BoxDecoration(
+                          color: Colors.blue.withOpacity(0.2),
+                          shape: BoxShape.circle),
+                    );
+                  }
+                },
+                ),
+                onDaySelected: (DateTime selected, DateTime focusedDay) {
                   //선택된 날짜 상태 갱신
-                  setState(() {
-                    this.selectedDay = selectedDay;
-                    this.focusedDay = focusedDay;
-                  });
+                  if (!isSameDay(_selectedDate, selected)) {
+                    setState(() {
+                      _selectedDate = selected;
+                      this.focusedDay = focusedDay;
+                    });
+                  }
                 },
                 selectedDayPredicate: (DateTime day) {
                   //selecteDay와 같은 날짜의 모양을 바꿈
-                  return isSameDay(selectedDay, day);
+                  return isSameDay(_selectedDate, day);
                 },
               ),
               SizedBox(
