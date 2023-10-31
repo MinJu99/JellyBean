@@ -23,20 +23,20 @@ class _CreateGroupState extends State<CreateGroup> {
   final String currentUserId = FirebaseAuth.instance.currentUser!.uid;
   final userCollection = FirebaseFirestore.instance.collection("users");
   final GroupService _groupService = GroupService();
+  String gCode = "";
 
   bool buttonState = false;
 
   // 그룹 생성후 데이터베이스에 입력 함수
   void createGroupList(String groupId) async {
     if (gNameController.text.isNotEmpty) {
-      await _groupService.createGroupList(groupId, gNameController.text);
+      await _groupService.createGroupList(groupId, gNameController.text, gCode);
     }
   }
 
   void createGroup() {
     if (gNameController.text.isNotEmpty) {
-      String gName = gNameController.text;
-      String gCode = _generateSecureCode();
+      gCode = _generateSecureCode();
       final doc = FirebaseFirestore.instance.collection("Groups").doc();
 
       FirebaseFirestore.instance.collection("Groups").doc(doc.id).set({
@@ -45,7 +45,7 @@ class _CreateGroupState extends State<CreateGroup> {
         'Member': memberNumbController.text,
         'GroupCode': gCode,
       });
-
+      
       createGroupList(doc.id);
 
       // 생성후 메인페이지로 이동
