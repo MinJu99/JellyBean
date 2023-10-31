@@ -37,7 +37,9 @@ class _MainPageState extends State<MainPage> {
       Chat(
         receiverUserID: widget.groupId,
       ),
-      const CalendarPage(), 
+      CalendarPage(
+        groupId: widget.groupId,
+      ), 
       const DepositPage(),
     ];
   }
