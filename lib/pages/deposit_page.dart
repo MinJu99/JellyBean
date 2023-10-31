@@ -3,13 +3,20 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:test/components/drawer.dart';
 import 'package:test/components/loading_circle.dart';
+import 'package:test/components/logo.dart';
 import 'package:test/components/plus_button.dart';
 import 'package:test/components/top_card.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:test/services/util/swipe_card.dart';
 import '../components/transaction.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:test/pages/group_list_page.dart';
+import 'package:test/pages/inquiry_page.dart';
+import 'package:test/pages/notice_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:test/pages/profile_page.dart';
 
 class DepositPage extends StatefulWidget {
   const DepositPage({super.key});
@@ -42,6 +49,50 @@ class _DepositPageState extends State<DepositPage> {
   //새로운 데이터 입력
   // 데이터 로딩까지 기다리기
   bool timerHasStarted = false;
+
+    void goToProfilePage() {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ProfilePage(),
+      ),
+    );
+  }
+
+  void goToGListPage() {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const GroupListPage(),
+      ),
+    );
+  }
+
+  void signOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
+  void goToNoticePage() {
+    //Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const NoticePage(),
+      ),
+    );
+  }
+  
+  void goToInquiryPage() {
+    //Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const InquiryPage(),
+      ),
+    );
+  }
 
   // 새로운 입출금 내역
   void _newTransaction() {
@@ -271,47 +322,78 @@ class _DepositPageState extends State<DepositPage> {
     setState(() {});
   }*/
 
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _globalKey,
+      endDrawer: MyDrawer( //Drawer->endDrawer
+        onProfileTap: goToProfilePage,
+        onSignOut: signOut,
+        onHomeTap: goToGListPage,
+        onNoticeTap: goToNoticePage,
+        onInquiryTap: goToInquiryPage,
+      ),
       backgroundColor: Colors.white, //grey[300],
-      body: Padding(
-        padding: const EdgeInsets.all(7.0), //15.0
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 75,
-            ),
-            SizedBox(
-              height: 160,
-              child: PageView(
-                scrollDirection: Axis.horizontal,
-                controller: _controller,
-                children: const [
-                  TopNeuCard(
-                      balance: '\$ 20,000',
-                      expense: '\$ 10,000',
-                      income: '\$ 30,000'),
-                  myPointCard(
-                      balance: '\$ 17,000',
-                      expense: '\$ 2,000',
-                      income: '\$ 8,000'),
-                ],
-              ),
-            ),
 
-            //const SizedBox(height: 5),
-            SmoothPageIndicator(
-              controller: _controller,
-              count: 2,
-              effect: WormEffect(
-                dotHeight: 12,
-                dotWidth: 12,
-                dotColor: Color.fromARGB(255, 211, 195, 227),
-                activeDotColor: Color.fromARGB(255, 186, 158, 215),
-              ),
-              //effect: ExpandingDotsEffect(activeDotColor: Color.fromARGB(255,211,195,227),),
+      body: Stack(//Padding(
+        alignment: Alignment.topRight,
+        //padding: const EdgeInsets.all(7.0), //15.0
+        
+          children: [
+            Positioned(
+              top: 40, //5
+              left: 10,
+              child: logo(),
             ),
+            Positioned(
+              top: 70, //30
+              right: 20,
+              child: IconButton(
+                //padding: const EdgeInsets.all(30),
+                icon: Icon(Icons.menu),
+                color: Colors.black,
+                onPressed: () {
+                  _globalKey.currentState!
+                      .openEndDrawer(); //openDrawer->openEndDrawer
+                },
+              ),
+            ),
+            Container(
+              child: 
+                Column(
+                  children: [
+                    SizedBox(height:110,),
+                      SizedBox(
+                        height: 160,
+                        child: PageView(
+                          scrollDirection: Axis.horizontal,
+                          controller: _controller,
+                          children: const [
+                            TopNeuCard(
+                                balance: '\$ 20,000',
+                                expense: '\$ 10,000',
+                                income: '\$ 30,000'),
+                            myPointCard(
+                                balance: '\$ 17,000',
+                                expense: '\$ 2,000',
+                                income: '\$ 8,000'),
+                          ],
+                        ),
+                      ),
+              
+                      //const SizedBox(height: 5),
+                      SmoothPageIndicator(
+                        controller: _controller,
+                        count: 2,
+                        effect: WormEffect(
+                          dotHeight: 12,
+                          dotWidth: 12,
+                          dotColor: Color.fromARGB(255, 211, 195, 227),
+                          activeDotColor: Color.fromARGB(255, 186, 158, 215),
+                        ),
+                        //effect: ExpandingDotsEffect(activeDotColor: Color.fromARGB(255,211,195,227),),
+                      ),
 
             Expanded(
               child: Container(

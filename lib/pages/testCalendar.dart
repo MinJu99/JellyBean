@@ -4,10 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:test/components/drawer.dart';
+import 'package:test/components/logo.dart';
 import 'package:test/pages/calendar.dart'; //
+import 'package:test/pages/profile_page.dart';
 import 'package:test/screens/add_event_screen.dart';
 import 'package:test/screens/edit_event_screen.dart';
 import '../models/event.dart';
+import 'package:test/pages/group_list_page.dart';
+import 'package:test/pages/inquiry_page.dart';
+import 'package:test/pages/notice_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});
@@ -19,18 +26,71 @@ class _TestCalendar extends State<CalendarPage> {
   DateTime? _selectedDate; //이벤트용(event_screen)
 
   DateTime selectedDay = DateTime(
-    //ㄱㅊ
     DateTime.now().year,
     DateTime.now().month,
     DateTime.now().day,
   );
   DateTime focusedDay = DateTime.now();
 
+  void goToProfilePage() {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ProfilePage(),
+      ),
+    );
+  }
+
+  void goToGListPage() {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const GroupListPage(),
+      ),
+    );
+  }
+
+  void signOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
+  void goToNoticePage() {
+    //Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const NoticePage(),
+      ),
+    );
+  }
+  
+  void goToInquiryPage() {
+    //Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const InquiryPage(),
+      ),
+    );
+  }
+
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _globalKey,
+      endDrawer: MyDrawer(
+        //Drawer->endDrawer
+        onProfileTap: goToProfilePage,
+        onSignOut: signOut,
+        onHomeTap: goToGListPage,
+        onNoticeTap: goToNoticePage,
+        onInquiryTap: goToInquiryPage,
+      ),
       resizeToAvoidBottomInset: false, //
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: Row(
           children: [
             Text(_selectedDate != null
@@ -63,12 +123,56 @@ class _TestCalendar extends State<CalendarPage> {
               },
               icon: Icon(Icons.calendar_today))
         ],
-      ),
-      body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+      ),*/
+      body: Stack(//SafeArea(
+        alignment: Alignment.topRight,
           children: [
-            SizedBox(height: 10),
+            Positioned(
+              top: 40, //5
+              left: 10,
+              child: logo(),
+            ),
+            Positioned(
+              top: 70, //30
+              right:  60,
+              child: IconButton(
+              onPressed: () async {
+                DateTime? newDate = await showDatePicker(
+                    context: context,
+                    initialDate: _selectedDate ?? DateTime.now(),
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime(2099));
+                if (newDate != null) {
+                  setState(() {
+                    _selectedDate = newDate;
+                  });
+                }
+              },
+              icon: Icon(Icons.calendar_today)),
+            ),
+            Positioned(
+              top: 70, //30
+              right: 20,
+              child: IconButton(
+                //padding: const EdgeInsets.all(30),
+                icon: Icon(Icons.menu),
+                color: Colors.black,
+                onPressed: () {
+                  _globalKey.currentState!
+                      .openEndDrawer(); //openDrawer->openEndDrawer
+                },
+              ),
+            ),
+
+            Column(
+              mainAxisSize: MainAxisSize.min,
+          
+          children: [
+            /*Text(_selectedDate != null
+                ? _selectedDate!.toIso8601String().substring(0, 10)
+                : "All Events"),*/
+            
+            SizedBox(height: 110),
             //Calendar(),
             TableCalendar(
               locale: 'ko_KR', //
@@ -87,6 +191,7 @@ class _TestCalendar extends State<CalendarPage> {
                 //selecteDay와 같은 날짜의 모양을 바꿈
                 return isSameDay(selectedDay, day);
               },
+              
             ),
             SizedBox(
               height: 10,
@@ -151,6 +256,8 @@ class _TestCalendar extends State<CalendarPage> {
             ),
           ],
         ),
+        
+          ],
       ),
 
       floatingActionButton: FloatingActionButton(

@@ -55,6 +55,17 @@ dependencies:
   google_mlkit_text_recognition: ^0.10.0
   permission_handler: ^11.0.1
   flutter_native_splash: ^2.3.5
+
+#flutter_native_splash:
+#    color: "#ffffff"
+    #background_image: "assets/background.png"
+#    image: lib/images/app_icon.jpg
+#    android_12:
+#      image: lib/images/app_icon.jpg  //assets/android12splash.png
+      #color: "#42a5f5"
+#    android: true
+#    ios: true
+#    web: true
  
 
 
