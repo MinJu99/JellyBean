@@ -50,7 +50,7 @@ class _DepositPageState extends State<DepositPage> {
   // 데이터 로딩까지 기다리기
   bool timerHasStarted = false;
 
-    void goToProfilePage() {
+  void goToProfilePage() {
     Navigator.pop(context);
     Navigator.push(
       context,
@@ -83,7 +83,7 @@ class _DepositPageState extends State<DepositPage> {
       ),
     );
   }
-  
+
   void goToInquiryPage() {
     //Navigator.pop(context);
     Navigator.push(
@@ -326,20 +326,22 @@ class _DepositPageState extends State<DepositPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _globalKey,
-      endDrawer: MyDrawer( //Drawer->endDrawer
-        onProfileTap: goToProfilePage,
-        onSignOut: signOut,
-        onHomeTap: goToGListPage,
-        onNoticeTap: goToNoticePage,
-        onInquiryTap: goToInquiryPage,
-      ),
-      backgroundColor: Colors.white, //grey[300],
+        key: _globalKey,
+        endDrawer: MyDrawer(
+          //Drawer->endDrawer
+          onProfileTap: goToProfilePage,
+          onSignOut: signOut,
+          onHomeTap: goToGListPage,
+          onNoticeTap: goToNoticePage,
+          onInquiryTap: goToInquiryPage,
+        ),
+        backgroundColor: Colors.white, //grey[300],
 
-      body: Stack(//Padding(
-        alignment: Alignment.topRight,
-        //padding: const EdgeInsets.all(7.0), //15.0
-        
+        body: Stack(
+          //Padding(
+          alignment: Alignment.topRight,
+          //padding: const EdgeInsets.all(7.0), //15.0
+
           children: [
             Positioned(
               top: 40, //5
@@ -360,65 +362,67 @@ class _DepositPageState extends State<DepositPage> {
               ),
             ),
             Container(
-              child: 
-                Column(
-                  children: [
-                    SizedBox(height:110,),
-                      SizedBox(
-                        height: 160,
-                        child: PageView(
-                          scrollDirection: Axis.horizontal,
-                          controller: _controller,
-                          children: const [
-                            TopNeuCard(
-                                balance: '\$ 20,000',
-                                expense: '\$ 10,000',
-                                income: '\$ 30,000'),
-                            myPointCard(
-                                balance: '\$ 17,000',
-                                expense: '\$ 2,000',
-                                income: '\$ 8,000'),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 110,
+                  ),
+                  SizedBox(
+                    height: 160,
+                    child: PageView(
+                      scrollDirection: Axis.horizontal,
+                      controller: _controller,
+                      children: const [
+                        TopNeuCard(
+                            balance: '\$ 20,000',
+                            expense: '\$ 10,000',
+                            income: '\$ 30,000'),
+                        myPointCard(
+                            balance: '\$ 17,000',
+                            expense: '\$ 2,000',
+                            income: '\$ 8,000'),
+                      ],
+                    ),
+                  ),
+
+                  //const SizedBox(height: 5),
+                  SmoothPageIndicator(
+                    controller: _controller,
+                    count: 2,
+                    effect: WormEffect(
+                      dotHeight: 12,
+                      dotWidth: 12,
+                      dotColor: Color.fromARGB(255, 211, 195, 227),
+                      activeDotColor: Color.fromARGB(255, 186, 158, 215),
+                    ),
+                    //effect: ExpandingDotsEffect(activeDotColor: Color.fromARGB(255,211,195,227),),
+                  ),
+
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            MyTransaction(
+                                expenseOrIncome: 'expense',
+                                transactionName: uses,
+                                money: expense),
                           ],
                         ),
                       ),
-              
-                      //const SizedBox(height: 5),
-                      SmoothPageIndicator(
-                        controller: _controller,
-                        count: 2,
-                        effect: WormEffect(
-                          dotHeight: 12,
-                          dotWidth: 12,
-                          dotColor: Color.fromARGB(255, 211, 195, 227),
-                          activeDotColor: Color.fromARGB(255, 186, 158, 215),
-                        ),
-                        //effect: ExpandingDotsEffect(activeDotColor: Color.fromARGB(255,211,195,227),),
-                      ),
-
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                child: Center(
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      MyTransaction(
-                          expenseOrIncome: 'expense',
-                          transactionName: uses,
-                          money: expense),
-                    ],
+                    ),
                   ),
-                ),
+                  PlusButton(
+                    function: _newTransaction,
+                  ),
+                ],
               ),
             ),
-            PlusButton(
-              function: _newTransaction,
-            ),
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
