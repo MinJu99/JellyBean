@@ -33,20 +33,22 @@ class _ChatState extends State<Chat> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[100],
-      body: Column(
-        children: [
-          Expanded(
-            child: _buildMessageList(),
-          ),
-          Container(
-            padding: EdgeInsets.all(10),
-            color: Colors.white,
-            child: _buildMessageInput(),
-
-          ),
-        ],
+    return Container(
+      child: Scaffold(
+        backgroundColor: Colors.grey[100],
+        body: Column(
+          children: [
+            Expanded(
+              child: _buildMessageList(),
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              color: Colors.white,
+              child: _buildMessageInput(),
+      
+            ),
+          ],
+        ),
       ),
     );
   }
