@@ -31,6 +31,7 @@ class _GroupListPageState extends State<GroupListPage> {
 
   // get docIDs
   Future getDocId() async {
+    docIDs = [];
     await userCollection.doc(currentUserId).collection('groups').get().then(
           (snapshot) => snapshot.docs.forEach((document) {
             docIDs.add(document.reference.id);
@@ -74,6 +75,7 @@ class _GroupListPageState extends State<GroupListPage> {
       ),
     );
   }
+
   // 추가함
   void goToInquiryPage() {
     //Navigator.pop(context);
@@ -96,11 +98,10 @@ class _GroupListPageState extends State<GroupListPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("JellyBean"),
-        backgroundColor: const Color.fromARGB(255,211,195,227),
+        backgroundColor: const Color.fromARGB(255, 211, 195, 227),
         actions: [
           IconButton(
-              onPressed: newGroup,
-              icon: const Icon(Icons.add_circle_outline))
+              onPressed: newGroup, icon: const Icon(Icons.add_circle_outline))
         ],
       ),
       drawer: MyDrawer(
@@ -118,33 +119,37 @@ class _GroupListPageState extends State<GroupListPage> {
               child: FutureBuilder(
                 future: getDocId(),
                 builder: (context, snapshot) {
-                  return ListView.builder(
-                    itemCount: (docIDs.length - 1),
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.fromLTRB(20,20,20,0),  //여기 수정
-                        child: Container(
-                          decoration: BoxDecoration(
+                  if (docIDs.length == null) {
+                    return Container();
+                  } else {
+                    return ListView.builder(
+                      itemCount: (docIDs.length),
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.fromLTRB(20, 20, 20, 0), //여기 수정
+                          child: Container(
+                            decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.grey[200],
                             ),
-                          child: ListTile(
-                            title: GetGroupName(documentId: docIDs[index]),
-                            textColor: Colors.black,
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MainPage(
-                                          groupId: docIDs[index],
-                                        )),
-                              );
-                            },
+                            child: ListTile(
+                              title: GetGroupName(documentId: docIDs[index]),
+                              textColor: Colors.black,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MainPage(
+                                            groupId: docIDs[index],
+                                          )),
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  );
+                        );
+                      },
+                    );
+                  }
                 },
               ),
             ),

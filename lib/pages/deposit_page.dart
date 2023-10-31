@@ -32,6 +32,9 @@ class _DepositPageState extends State<DepositPage> {
   String scannedText = "";
   String result = "";
 
+  String expense = "";
+  String uses = "";
+
   final moneyController = TextEditingController(); //금액
   final useController = TextEditingController(); //사용처
   final breakdownController = TextEditingController(); //내역
@@ -45,135 +48,156 @@ class _DepositPageState extends State<DepositPage> {
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          actions: <Widget>[
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              backgroundColor: Colors.white,
+              actions: <Widget>[
                 const SizedBox(
-                  width: 10,
+                  height: 10,
                 ),
-                const Text(
-                  '금액    ',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
+                Row(
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text(
+                      '금액    ',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    SizedBox(
+                      width: 150,
+                      child: TextField(
+                        controller: moneyController,
+                        textCapitalization: TextCapitalization.words,
+                      ),
+                    ),
+                    //const SizedBox(width: 10,),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text(
+                      '사용처',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    SizedBox(
+                      width: 150,
+                      child: TextField(
+                        controller: useController,
+                        textCapitalization: TextCapitalization.words,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text(
+                      '내역    ',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 25,
+                    ),
+                    SizedBox(
+                      width: 150,
+                      child: TextField(
+                        controller: breakdownController,
+                        textCapitalization: TextCapitalization.words,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(
-                  width: 25,
+                  height: 30,
                 ),
-                SizedBox(
-                  width: 150,
-                  child: Text(result),
+                _buildPhotoArea(),
+                const SizedBox(
+                  height: 30,
                 ),
-                //const SizedBox(width: 10,),
+                _buildButton(),
+                Row(
+                  children: [
+                    /*IconButton(
+                    icon: const Icon(Icons.camera_alt),
+                    color: const Color.fromARGB(255, 211, 195, 227), //누르면 카메라
+                    iconSize: 35,
+                    onPressed: () async {
+                      var picker = ImagePicker();
+                      var image =
+                          await picker.pickImage(source: ImageSource.camera);
+                    },
+                  ),*/
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    MaterialButton(
+                      color: Colors.white,
+                      child: const Text(
+                        '취소',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onPressed: () {
+                        setState(
+                          () {
+                            _image = null;
+                          },
+                        );
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    MaterialButton(
+                      color: Colors.white,
+                      child: const Text(
+                        '추가',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onPressed: () {
+                        _getInfo(useController.text,
+                            moneyController.text.toString());
+                        Navigator.of(context).pop(); //닫히게 함
+                      },
+                    )
+                  ],
+                ),
               ],
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 10,
-                ),
-                const Text(
-                  '사용처',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
-                ),
-                const SizedBox(
-                  width: 25,
-                ),
-                SizedBox(
-                  width: 150,
-                  child: TextField(
-                    controller: useController,
-                    textCapitalization: TextCapitalization.words,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 10,
-                ),
-                const Text(
-                  '내역    ',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                  ),
-                ),
-                const SizedBox(
-                  width: 25,
-                ),
-                SizedBox(
-                  width: 150,
-                  child: TextField(
-                    controller: breakdownController,
-                    textCapitalization: TextCapitalization.words,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            _buildPhotoArea(),
-            const SizedBox(
-              height: 30,
-            ),
-            _buildButton(),
-            Row(
-              children: [
-                /*IconButton(
-                  icon: const Icon(Icons.camera_alt),
-                  color: const Color.fromARGB(255, 211, 195, 227), //누르면 카메라
-                  iconSize: 35,
-                  onPressed: () async {
-                    var picker = ImagePicker();
-                    var image =
-                        await picker.pickImage(source: ImageSource.camera);
-                  },
-                ),*/
-                const SizedBox(
-                  width: 10,
-                ),
-                MaterialButton(
-                  color: Colors.white,
-                  child: const Text(
-                    '취소',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                MaterialButton(
-                  color: Colors.white,
-                  child: const Text(
-                    '추가',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop(); //닫히게 함
-                  },
-                )
-              ],
-            ),
-          ],
+            );
+          },
         );
       },
     );
+  }
+
+  Future _getInfo(String item, String amount) async {
+    setState(() {
+      uses = item;
+      expense = amount;
+    });
   }
 
   Widget _buildPhotoArea() {
@@ -218,11 +242,11 @@ class _DepositPageState extends State<DepositPage> {
       setState(() {
         _image = XFile(pickedFile.path);
       });
-      getRecognizedText(_image!);
+      //getRecognizedText(_image!);
     }
   }
 
-  void getRecognizedText(XFile image) async {
+  /*void getRecognizedText(XFile image) async {
     final InputImage inputImage = InputImage.fromFilePath(image.path);
     final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
 
@@ -245,7 +269,7 @@ class _DepositPageState extends State<DepositPage> {
     result = result.replaceAll(RegExp('[^0-9]'), '');
 
     setState(() {});
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -299,13 +323,9 @@ class _DepositPageState extends State<DepositPage> {
                         height: 20,
                       ),
                       MyTransaction(
-                          expenseOrIncome: 'income',
-                          transactionName: 'Teaching',
-                          money: '300'),
-                      MyTransaction(
                           expenseOrIncome: 'expense',
-                          transactionName: 'dinner(09/23)',
-                          money: '8000'),
+                          transactionName: uses,
+                          money: expense),
                     ],
                   ),
                 ),

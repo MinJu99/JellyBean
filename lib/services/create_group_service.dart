@@ -8,7 +8,7 @@ class GroupService extends ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<void> createGroupList(String groupId, String groupName) async {
+  Future<void> createGroupList(String groupId, String groupName, String gCode) async {
     // 현재 사용자 정보 받아오기
     final String currentUserId = _firebaseAuth.currentUser!.uid;
     final String currenUserEmail = _firebaseAuth.currentUser!.email.toString();
@@ -18,6 +18,7 @@ class GroupService extends ChangeNotifier {
     Groups newGroup = Groups(
       groupId: groupId,
       groupName: groupName,
+      groupCode: gCode,
       timestamp: timestamp,
     );
 

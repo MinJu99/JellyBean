@@ -23,20 +23,20 @@ class _CreateGroupState extends State<CreateGroup> {
   final String currentUserId = FirebaseAuth.instance.currentUser!.uid;
   final userCollection = FirebaseFirestore.instance.collection("users");
   final GroupService _groupService = GroupService();
+  String gCode = "";
 
   bool buttonState = false;
 
   // 그룹 생성후 데이터베이스에 입력 함수
   void createGroupList(String groupId) async {
     if (gNameController.text.isNotEmpty) {
-      await _groupService.createGroupList(groupId, gNameController.text);
+      await _groupService.createGroupList(groupId, gNameController.text, gCode);
     }
   }
 
   void createGroup() {
     if (gNameController.text.isNotEmpty) {
-      String gName = gNameController.text;
-      String gCode = _generateSecureCode();
+      gCode = _generateSecureCode();
       final doc = FirebaseFirestore.instance.collection("Groups").doc();
 
       FirebaseFirestore.instance.collection("Groups").doc(doc.id).set({
@@ -82,7 +82,9 @@ class _CreateGroupState extends State<CreateGroup> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ShareAndMove(documentId: docId,),
+        builder: (context) => ShareAndMove(
+          documentId: docId,
+        ),
       ),
     );
   }
@@ -232,8 +234,7 @@ class _CreateGroupState extends State<CreateGroup> {
                           children: <Widget>[
                             MyButtonGroup(
                               //elavated button으로 변경
-                              text:
-                                  "생성하기", //버튼 안 글 수정(야매 죄송염) --> 변경필요
+                              text: "생성하기", //버튼 안 글 수정(야매 죄송염) --> 변경필요
                               onTap: createGroup, //눌렀을 때 함수
                             ),
                           ],

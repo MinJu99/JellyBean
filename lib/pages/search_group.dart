@@ -98,7 +98,7 @@ class _SearchGroupState extends State<SearchGroup> {
                     
                           if (data['GroupCode']
                               .toString()
-                              .startsWith(gCode.toString())) {
+                              .startsWith(gCode)) {
                             return ListTile(
                               title: Text(data['GroupName']),
                             );
