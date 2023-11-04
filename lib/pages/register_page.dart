@@ -175,7 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
